@@ -1,0 +1,2058 @@
+31.76 KB •1708줄 • 원본과 형식이 일치하지 않을 수 있습니다 @font-face {
+  font-family: "GyeonggiMillenniumBackground";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2410-3@1.0/Batang_Regular.woff")
+    format("woff");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Cafe24ProSlim";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2511-1@1.0/Cafe24PROSlim-Light.woff2")
+    format("woff2");
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Cafe24ProSlim";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2511-1@1.0/Cafe24PROSlim-Regular.woff2")
+    format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Cafe24ProSlim";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2511-1@1.0/Cafe24PROSlim-Bold.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+ul {
+  list-style: none;
+}
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+body {
+  cursor: none;
+  width: 100%;
+  overflow-x: hidden;
+  color: #222;
+}
+/* header */
+header {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: right;
+  z-index: 1000; /* z-index 높임 */
+  background-color: transparent;
+  position: fixed;
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+/* 스크롤 시 적용될 클래스 */
+header.scrolled {
+  background-color: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+header ul {
+  padding-right: 40px;
+  box-sizing: border-box;
+  display: flex;
+  color: #666;
+  font-family: "Concert One", sans-serif;
+  font-size: 1.2rem;
+  height: 70px;
+}
+
+header li {
+  width: 150px;
+  height: 70px;
+}
+
+header li a {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+}
+
+header ul img {
+  width: 8%;
+  transition: transform 0.5s, filter 0.3s;
+  margin-right: 10px;
+  filter: invert(50%);
+}
+
+header ul li:hover img {
+  transform: rotate(180deg);
+}
+
+/* 스크롤 시 텍스트 색상 조정 */
+header.scrolled ul {
+  color: #333;
+  filter: invert(10%);
+}
+
+header.scrolled ul img {
+  filter: invert(50%);
+}
+/* longbox */
+/* .longbox {
+  width: 100%;
+  height: 200vh;
+  position: relative;
+} */
+
+/* visual */
+.visual {
+  width: 100%;
+  overflow: hidden;
+}
+.visualimg {
+  width: 100%;
+  height: 100vh;
+  background-image: url(../img/bg.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+}
+.text {
+  width: 1400px;
+  position: relative;
+}
+.textleft {
+  top: 220px;
+  position: absolute;
+  left: 25%;
+  width: 85%;
+  animation: slideInLeft 1.5s ease-out forwards;
+}
+.textleft img {
+  width: 100%;
+}
+.textright {
+  position: absolute;
+  left: 38%;
+  top: 400px;
+  width: 85%;
+  animation: slideInRight 1.5s ease-out forwards;
+}
+.textright img {
+  width: 100%;
+}
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+
+    transform: translate(-700px, 200px);
+  }
+  100% {
+    opacity: 1;
+
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+
+    transform: translate(700px, -100px);
+  }
+  100% {
+    opacity: 1;
+
+    transform: translate(0, 0);
+  }
+}
+
+.img-container {
+  position: fixed;
+  top: 15%;
+  left: 35%;
+
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+}
+.img-container img {
+  width: 600px;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.txt {
+  position: absolute;
+  width: 530px;
+  top: 485px;
+  left: 44%;
+  opacity: 0;
+  animation: txt 0.8s ease-out 0.8s forwards;
+  z-index: 20;
+}
+@keyframes txt {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.smileright {
+  position: absolute;
+  right: -10%;
+  bottom: -30%;
+  animation: bigsmile 3s ease-in-out infinite alternate;
+}
+@keyframes bigsmile {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-50px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.smileleft {
+  position: absolute;
+  left: 5%;
+  bottom: -2%;
+  width: 350px;
+  animation: smallsmile 2s ease-in-out 0.5s infinite alternate;
+}
+@keyframes smallsmile {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.smiletop {
+  position: absolute;
+  right: 30%;
+  top: -10%;
+  animation: smallsmile 3s ease-in-out 0.5s infinite alternate;
+}
+.flowerleft {
+  position: absolute;
+  left: 13%;
+  top: 30%;
+  animation: bigflower 3s ease-in-out 0.5s infinite alternate;
+}
+@keyframes bigflower {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.flowerbottom {
+  position: absolute;
+  right: 25%;
+  bottom: 10%;
+  animation: smallflower 3s ease-in-out infinite alternate;
+}
+@keyframes smallflower {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.pinkhot {
+  position: absolute;
+  right: 5%;
+  top: 45%;
+  animation: pinkhot 2s ease-in-out 1s infinite alternate;
+}
+@keyframes pinkhot {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.redhot {
+  opacity: 0;
+  position: absolute;
+  left: 30%;
+  top: 2%;
+  transform: rotate(-60deg);
+}
+.arrow {
+  position: absolute;
+  right: 50%;
+  bottom: 0%;
+  animation: pinkhot 2s ease-in-out 1s infinite alternate;
+}
+#about {
+  padding-bottom: 100px;
+  background-color: black;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.lines {
+  width: 300px;
+  height: 300px;
+  margin-left: 350px;
+
+  position: relative;
+  opacity: 0;
+}
+.linepink {
+  background-color: rgb(255, 0, 153);
+  width: 200px;
+  height: 15px;
+  transform: rotate(30deg);
+  position: absolute;
+  top: 35px;
+  left: 70px;
+}
+.lineyellow {
+  background-color: rgb(237, 255, 74);
+  width: 100px;
+  height: 10px;
+  transform: rotate(40deg);
+  position: absolute;
+  top: 20px;
+  left: 150px;
+}
+.linewhite {
+  background-color: white;
+  width: 220px;
+  height: 5px;
+  transform: rotate(10deg);
+  position: absolute;
+  top: 80px;
+  left: 50px;
+}
+.linesky {
+  background-color: rgb(0, 187, 255);
+  width: 100px;
+  height: 10px;
+  transform: rotate(0deg);
+  position: absolute;
+  top: 90px;
+  left: 30px;
+}
+.text2 {
+  width: 100%;
+  background-color: rgb(125, 44, 245);
+  margin-top: 400px;
+  position: relative;
+  z-index: 10;
+}
+.skill-list {
+  width: fit-content;
+  height: 70px;
+
+  color: white;
+  display: flex;
+  align-items: center;
+  animation: scroll 40s linear infinite;
+  flex-shrink: 0;
+}
+.skill-list li {
+  box-sizing: border-box;
+  gap: 10px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  width: 200px;
+  font-size: 23px;
+  font-family: "Hammersmith One", sans-serif;
+}
+.skill-list li img {
+  margin-right: 10px;
+  filter: invert(100%);
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.text3wrap {
+  display: flex;
+  width: fit-content;
+  animation: bottom 40s linear infinite;
+}
+
+.text3 {
+  display: flex;
+  gap: 100px;
+  flex-shrink: 0;
+}
+
+.text3 h3 {
+  white-space: nowrap;
+  margin-top: 20px;
+  font-size: 150px;
+  font-weight: lighter;
+  font-family: "GyeonggiMillenniumBackground";
+  color: transparent;
+  -webkit-text-stroke: 1px gray;
+}
+@keyframes bottom {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+#about {
+  position: relative;
+}
+.hidden {
+  width: 1200px;
+  height: 420px;
+
+  overflow: hidden;
+  position: absolute;
+  left: 400px;
+  top: 280px;
+  z-index: 0;
+}
+.textbox {
+  width: 1200px;
+  height: 420px;
+  font-size: 18px;
+  position: relative;
+}
+.textbox .EXPERIENCE img {
+  width: 15px;
+  margin-right: 10px;
+  opacity: 70%;
+}
+.EDUCATION img,
+.EXPERIENCE img,
+.Certificate img {
+  width: 15px;
+  margin-right: 10px;
+  opacity: 80%;
+}
+.textbox h5 {
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+  color: #444;
+}
+.textbox h6 {
+  font-weight: normal;
+  font-size: 1rem;
+  margin-left: 25px;
+  color: #707070;
+}
+.aboutmetxt {
+  width: 100%;
+}
+.Certificate {
+  left: 70px;
+  top: 76%;
+  position: absolute;
+  font-size: 16px;
+}
+.EXPERIENCE {
+  left: 70px;
+  top: 55%;
+  position: absolute;
+  font-size: 15px;
+}
+.EXPERIENCE P {
+  margin-left: 125px;
+  font-size: 14px;
+  font-style: italic;
+}
+.EDUCATION {
+  /* left: 70px;
+  top: 85%; */
+  right: 80px;
+  bottom: 10%;
+  position: absolute;
+  font-size: 16px;
+}
+.textbox span {
+  font-weight: bold;
+  font-size: 16px;
+  margin-right: 10px;
+}
+.cross {
+  position: absolute;
+  top: 200px;
+  left: -30px;
+  transform: rotate(-20deg);
+  opacity: 50%;
+  animation: cross 2s ease-in-out 1s infinite alternate;
+}
+@keyframes cross {
+  0% {
+    transform: rotate(-20deg) translateY(0);
+  }
+  50% {
+    transform: rotate(-20deg) translateY(-10px);
+  }
+  100% {
+    transform: rotate(-20deg) translateY(0);
+  }
+}
+.cross1 {
+  position: absolute;
+  top: 150px;
+  right: 30px;
+  transform: rotate(20deg);
+  opacity: 90%;
+  animation: cross1 2s ease-in-out 1s infinite alternate;
+}
+
+@keyframes cross1 {
+  0% {
+    transform: rotate(20deg) translateY(0);
+  }
+  50% {
+    transform: rotate(20deg) translateY(-10px);
+  }
+  100% {
+    transform: rotate(20deg) translateY(0);
+  }
+}
+.smile1 {
+  position: absolute;
+  bottom: 450px;
+  left: 280px;
+  transform: rotate(-20deg);
+  color: #9ab439;
+  font-size: 80px;
+  animation: smile1 2s ease-in-out 1s infinite alternate;
+}
+@keyframes smile1 {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.smile1 i {
+  transform: rotate(-20deg);
+}
+.smile3 i {
+  transform: rotate(30deg);
+}
+.smile2 i {
+  transform: rotate(10deg);
+}
+.smile2 {
+  color: #5a5174;
+  position: absolute;
+  bottom: 150px;
+  right: -50px;
+  font-size: 160px;
+  transform: rotate(-30deg);
+  animation: smile2 2s ease-in-out 1s infinite alternate;
+}
+@keyframes smile2 {
+  0% {
+    transform: rotate(-30deg) translateY(0);
+  }
+  50% {
+    transform: rotate(-30deg) translateY(-10px);
+  }
+  100% {
+    transform: rotate(-30deg) translateY(0);
+  }
+}
+.smile3 {
+  color: #3f92ff;
+  position: absolute;
+  top: 300px;
+  right: 100px;
+  transform: rotate(20deg);
+  font-size: 130px;
+  animation: smile3 2s ease-in-out 1s infinite alternate;
+}
+@keyframes smile3 {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.heart1 {
+  color: #ff7285;
+  position: absolute;
+  top: 18%;
+  left: 60%;
+  transform: rotate(20deg);
+  font-size: 60px;
+  animation: heart1 2s ease-in-out 1s infinite alternate;
+}
+@keyframes heart1 {
+  0% {
+    transform: rotate(20deg) translateY(0);
+  }
+  50% {
+    transform: rotate(20deg) translateY(-10px);
+  }
+  100% {
+    transform: rotate(20deg) translateY(0);
+  }
+}
+.heartline {
+  color: #00ffd5;
+  position: absolute;
+  bottom: 270px;
+  left: 70px;
+  transform: rotate(20deg);
+  font-size: 110px;
+  animation: heartline 2s ease-in-out 1s infinite alternate;
+}
+@keyframes heartline {
+  0% {
+    transform: rotate(20deg) translateY(0);
+  }
+  50% {
+    transform: rotate(20deg) translateY(-10px);
+  }
+  100% {
+    transform: rotate(20deg) translateY(0);
+  }
+}
+
+/*포트폴리오 일러스트카드 */
+/*포트폴리오 일러스트카드 */
+:root {
+  --card-width: 550px;
+  --bg-color: #f4f4f4;
+  --image-bg: #1a1a1a;
+  --text-bg: #ffffff;
+}
+
+/* creative 전체 영역에 그리드 배경 적용 */
+#creative {
+  width: 100%;
+
+  background-color: #f4f4f4;
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.2) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 1px, transparent 1px);
+  background-size: 100px 100px;
+}
+
+.illust {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  z-index: 1;
+  /* background 관련 제거 - 부모(#creative)가 처리 */
+}
+
+.scene {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 2000px;
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  height: auto;
+  transform-style: preserve-3d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotateX(2deg);
+}
+
+.card {
+  position: absolute;
+  width: var(--card-width);
+  height: auto;
+  min-height: 600px;
+  border-radius: 24px;
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-style: preserve-3d;
+  pointer-events: auto;
+}
+
+.card-face {
+  position: absolute;
+
+  backface-visibility: hidden;
+  border-radius: 24px;
+  overflow: hidden; /* ⬅️ 이미지 자르기 방지를 위해 여기서는 overflow:hidden을 유지해야 합니다. */
+}
+
+.card-front {
+  width: 600px;
+  height: 100%; /* ⬅️ 이미지 영역이 카드의 높이를 꽉 채우도록 설정 */
+  display: flex; /* ⬅️ 이미지 정렬을 위해 flexbox 사용 */
+  align-items: center; /* ⬅️ 세로 중앙 정렬 */
+  justify-content: center; /* ⬅️ 가로 중앙 정렬 */
+  background-color: white; /* ⬅️ 이미지 배경색 */
+  border: 4px solid rgb(214, 214, 214);
+  box-sizing: border-box;
+  padding: 30px;
+}
+
+.card-front img {
+  display: block;
+  max-width: 100%; /* ⬅️ 부모 너비를 넘지 않도록 */
+  max-height: 100%; /* ⬅️ 부모 높이를 넘지 않도록 (세로 이미지를 위한 핵심) */
+  width: auto; /* ⬅️ 가로 세로 비율 유지를 위해 width: auto로 변경 */
+  height: auto; /* ⬅️ 가로 세로 비율 유지를 위해 height: auto로 변경 */
+  object-fit: contain; /* ⬅️ 이미지 잘림 없이 컨테이너에 맞춤 (가장 중요) */
+}
+
+.card-back {
+  width: 500px;
+  height: 400px;
+  transform: rotateY(180deg);
+  background: var(--text-bg);
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-between;
+  border: 4px solid #000000;
+  transform: rotateY(180deg) translate(-100px, 50px);
+  padding-bottom: 20px;
+  box-sizing: border-box;
+}
+.array {
+  box-sizing: border-box;
+
+  width: 100%;
+  padding-right: 30px;
+  display: flex;
+  justify-content: right;
+  gap: 10px;
+  pointer-events: auto;
+}
+.array img {
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+}
+.array img:hover {
+  opacity: 50%;
+}
+.array .more {
+  font-weight: 700;
+  letter-spacing: -1px;
+  line-height: 60px;
+  width: 60px;
+  height: 60px;
+  position: relative;
+  z-index: 10;
+  font-size: 14px;
+  color: #777777;
+  text-align: center;
+}
+.array .more:hover {
+  opacity: 50%;
+}
+.array .yellow {
+  background-color: #fbff06;
+}
+
+.array .skyblue {
+  background-color: #7aa0ae;
+  color: white;
+}
+.array .brown {
+  background-color: #1f3d70;
+  color: white;
+}
+.array .black {
+  background-color: rgb(89, 174, 70);
+  color: white;
+}
+.array .deepyellow {
+  background-color: rgb(255, 196, 0);
+}
+.array .darked {
+  background-color: rgb(89, 2, 2);
+  color: white;
+}
+.array .red {
+  background-color: rgb(235, 59, 10);
+  color: white;
+}
+.array .orange {
+  background-color: rgb(225, 107, 71);
+  color: white;
+}
+.card-back h2 {
+  padding: 20px;
+  box-sizing: border-box;
+  width: 100%;
+  background-color: #000000;
+  height: 80px;
+  text-align: right;
+  font-size: 1.5rem;
+
+  color: #ffffff;
+  font-weight: 800;
+}
+.card-back h3 {
+  font-size: 1rem;
+  margin: 0px 30px 0px 0px;
+  color: #333;
+  font-weight: 800;
+}
+.card-back p {
+  width: 400px;
+  margin-left: 65px;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #666;
+  word-break: keep-all;
+}
+
+.controls {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 40px;
+  z-index: 9999;
+  pointer-events: auto;
+}
+
+.nav-btn {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background: #333;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, background 0.2s;
+  pointer-events: auto;
+}
+.nav-btn:hover {
+  background: #9c51ff;
+  transform: scale(1.1);
+}
+
+/* Gallery Section */
+#page3.gallery-section {
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+  background-color: #000000;
+  margin: 0px auto;
+}
+
+.gallery-container {
+  width: 100%;
+  margin: 0px auto;
+  display: flex;
+  justify-content: center;
+  /*
+  overflow-x: hidden;*/
+
+  box-sizing: border-box;
+  position: relative;
+}
+
+.gallery-col {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+.left-col {
+  width: 100%;
+}
+.right-col {
+  width: 100%;
+}
+
+/* Sticky Text */
+.gallery-text-sticky {
+  width: 300px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  color: #ccc;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-inner {
+  position: static;
+  top: auto;
+  height: auto;
+
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0; /* JS로 나타나게 처리 */
+}
+
+.text-inner .artworktext {
+  font-size: 5rem;
+  line-height: 1.1;
+  margin-bottom: 30px;
+  white-space: nowrap;
+}
+.text-inner .sub-title3 {
+  width: 400px;
+  font-size: 1rem;
+  line-height: 1.6;
+  word-break: keep-all;
+  margin-bottom: 30px;
+}
+.text-inner p {
+  margin-top: 30px;
+  font-size: 16px;
+}
+/* Art Items */
+/* 이미지 원본 비율 유지 설정 */
+.art-item {
+  width: 70%;
+  height: auto; /* 이미지 크기에 맞춰 높이 자동 조절 */
+  margin-top: 300px;
+  position: relative;
+
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.art-item img {
+  width: 100%;
+  height: auto; /* 이미지 원본 비율 유지 */
+  display: block;
+  transition: filter 0.3s ease;
+}
+.size2 {
+  width: 80%;
+}
+.size6 {
+  width: 80%;
+}
+.size8 {
+  width: 80%;
+}
+.art-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.art-overlay h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+  line-height: 40px;
+}
+.art-overlay h3 span {
+  font-size: 40px;
+}
+.art-overlay p {
+  margin-top: 20px;
+  width: 70%;
+  font-size: 1rem;
+  font-weight: 300;
+  transform: translateY(20px);
+  transition: transform 0.3s ease 0.1s;
+  line-height: 25px;
+  word-break: keep-all;
+}
+
+.art-item:hover {
+  transform: translateY(-5px);
+}
+.art-item:hover .art-overlay {
+  opacity: 1;
+}
+.art-item:hover .art-overlay h3,
+.art-item:hover .art-overlay p {
+  transform: translateY(0);
+}
+/* Portfolio Hidden State (page3 끝에 배치) */
+
+.portfolio-reveal-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+
+  justify-content: center;
+  background-color: #000000;
+  z-index: 40;
+}
+.cattext {
+  position: absolute;
+  top: 30%;
+  right: 9%;
+  color: #797979;
+  font-size: 6rem;
+  font-family: "Hammersmith One", sans-serif;
+}
+#portfolio.portfolio-with-transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  opacity: 0;
+  clip-path: circle(0% at 18% 70%);
+  pointer-events: none;
+  background: white;
+  overflow: hidden;
+}
+.portfolio-anchor-icon {
+  position: absolute;
+  top: 57%;
+  left: 9%;
+  width: 350px;
+  height: auto;
+  z-index: 100;
+}
+
+/* PORTFOLIO-clonecoding섹션 */
+#portfolio {
+  background-color: white;
+  box-sizing: border-box;
+  width: 100%;
+}
+.portfolio-container {
+  width: 100%;
+  max-width: 100%;
+  height: 800px;
+
+  border-radius: 20px;
+
+  display: flex;
+  gap: 0;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* --- 공통 아이템 스타일 --- */
+.portfolio-item {
+  flex: 1; /* [중요] 처음에는 모두 1의 비율 (똑같은 크기) */
+  border: 2px solid rgb(47, 47, 47);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+.portfolio-item .item-content {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* 처음좁혀진 상태 */
+.portfolio-item .preview-layer {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 50px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* 제목 위, 아이콘 아래 */
+  transition: opacity 0.3s;
+  opacity: 1; /* 기본적으로 보이게 설정 */
+  pointer-events: auto;
+  color: #333;
+}
+
+.portfolio-item h2 {
+  color: #000;
+  font-size: 40px;
+  font-weight: 900;
+
+  white-space: nowrap;
+  font-family: "Montserrat", sans-serif;
+}
+
+.portfolio-item .preview-icon {
+  position: relative;
+  align-self: flex-end; /* 오른쪽 정렬 */
+  width: 250px;
+  height: 250px;
+}
+.portfolio-item .preview-icon img {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.portfolio-item .preview-icon img:nth-child(2) {
+  display: none;
+}
+.portfolio-item:hover img:nth-child(2) {
+  display: block;
+}
+
+/* 디테일 레이어 (초기엔 숨김) - fadeIn/fadeOut 사용을 위해 display:none 제거 */
+.portfolio-item .detail-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  /* 초기에는 숨김 처리 */
+  display: none;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: white;
+  padding: 80px 60px 40px 100px;
+  box-sizing: border-box;
+
+  justify-content: space-between;
+  transition: opacity 0.5s ease;
+}
+
+/* --- 2. 활성화 상태 (클릭된 놈) --- */
+.portfolio-item.active {
+  flex: 4; /* 넓어짐 */
+  cursor: default;
+  background: white;
+}
+
+/* 활성화 시 프리뷰 숨김 */
+.portfolio-item.active .preview-layer {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* 활성화 시 디테일 보임 */
+.portfolio-item.active .detail-layer {
+  display: flex;
+  justify-content: space-between;
+  gap: 5%;
+  opacity: 1;
+  pointer-events: auto;
+  /* JS에서 fadeIn을 사용하므로 @keyframes fadeIn은 제거합니다. */
+}
+
+/* 상세 내용 스타일 */
+.portfolio-item.active .left-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.portfolio-item.active .item-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  font-style: italic;
+  margin-bottom: 10px;
+  letter-spacing: -2px;
+}
+.portfolio-item.active .item-title span {
+  font-size: 0.9rem;
+  color: #888;
+  font-style: none;
+  font-weight: lighter;
+  letter-spacing: -1px;
+  margin-left: 20px;
+}
+.portfolio-item.active .left-content ul {
+  margin-top: 30px;
+  display: flex;
+  gap: 20px;
+  color: #666;
+}
+.portfolio-item.active .left-content ul li:hover {
+  color: #222;
+}
+.portfolio-item.active .item-subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.portfolio-item.active .tags {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.portfolio-item.active .tag {
+  padding: 5px 15px;
+  border: 2px solid black;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.portfolio-item.active .description {
+  width: 80%;
+  word-break: keep-all;
+  margin-top: 50px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+}
+/* .portfolio-item.active .item-date {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #777;
+  margin-bottom: 50px;
+} */
+.portfolio-item.active .character-area {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.portfolio-item.active .character-placeholder {
+  width: 400px;
+  height: 300px;
+
+  display: flex;
+  align-items: center;
+
+  justify-content: left;
+}
+.portfolio-item.active .character-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.portfolio-item.active .thumbnail-area {
+  flex: 1.4;
+
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  overflow: hidden;
+}
+
+.portfolio-item.active .thumbnail-placeholder {
+  width: 100%;
+  height: 400px;
+  background: #f0f0f0;
+  border: 3px solid black;
+  display: flex;
+}
+.portfolio-item.active .thumbnail-placeholder video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- 3. 비활성 상태 (다른게 열렸을 때 쪼그라드는 놈들) --- */
+/* 컨테이너에 'expand-mode'가 있을 때, active가 아닌 녀석들 */
+.portfolio-container.expand-mode .portfolio-item:not(.active) {
+  flex: 0 0 80px; /* 좁게 축소 */
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* 좁아진 상태에서 프리뷰 레이어 스타일 변경 */
+.portfolio-container.expand-mode .portfolio-item:not(.active) .preview-layer {
+  padding: 20px 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.portfolio-container.expand-mode .portfolio-item:not(.active) .preview-title {
+  writing-mode: vertical-rl; /* 세로 쓰기만 유지 */
+  text-orientation: mixed;
+  /* transform: rotate(180deg);  <-- 삭제하거나 주석 처리 */
+  margin: 0;
+}
+
+.portfolio-container.expand-mode .portfolio-item:not(.active) .preview-icon {
+  display: none; /* 좁아지면 아이콘 숨김 */
+}
+.portfolio-container.expand-mode
+  .portfolio-item:not(.active)
+  .preview-layer
+  h3 {
+  display: none; /* 좁아지면 아이콘 숨김 */
+}
+
+/* 호버 효과 */
+.portfolio-item:not(.active):hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* adobi illust */
+.loader-wrapper {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: 30px 0;
+}
+
+.loader-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* 물 컨테이너 */
+.water-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 2;
+}
+
+/* 물 효과 */
+.water {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 159, 28, 0.8) 0%,
+    rgba(255, 127, 0, 0.9) 50%,
+    rgba(247, 99, 12, 1) 100%
+  );
+}
+
+/* 물결 효과 */
+.water::before,
+.water::after {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -150%;
+  left: -50%;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 45%;
+  animation: wave 3s linear infinite;
+}
+
+.water::after {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 40%;
+  animation: wave 4s linear infinite reverse;
+}
+
+@keyframes wave {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* AI 텍스트 */
+.ai-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 35px;
+  font-weight: 900;
+  color: #fff;
+  z-index: 3;
+  font-family: "Arial Black", sans-serif;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  letter-spacing: -2px;
+}
+
+/* text4 */
+.text4 {
+  width: 100%;
+  background-color: rgb(0, 0, 0);
+
+  position: relative;
+  z-index: 10;
+}
+.skill-list {
+  width: fit-content;
+  height: 70px;
+
+  color: white;
+  display: flex;
+  align-items: center;
+  animation: scroll 40s linear infinite;
+  flex-shrink: 0;
+}
+.skill-list li {
+  box-sizing: border-box;
+  gap: 10px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  width: 200px;
+  font-size: 23px;
+  font-family: "Hammersmith One", sans-serif;
+}
+.skill-list li img {
+  margin-right: 10px;
+  filter: invert(100%);
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+/*contact*/
+#contact {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-txt {
+  color: #333;
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+  padding: 2% 0% 0%;
+}
+
+.text-line {
+  width: 100%;
+  text-align: center;
+  position: relative;
+}
+
+.text-line li {
+  margin-bottom: 1.2%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 7rem;
+  font-weight: bold;
+  font-family: "Cafe24ProSlim";
+}
+
+/* 한 줄로 합친 라인 */
+.combined-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  font-size: 6rem;
+}
+
+.one {
+  display: flex;
+  align-items: center;
+  position: relative;
+  gap: 0;
+  transition: gap 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.one.active {
+  gap: 15px;
+}
+
+/* 반원 컨테이너 */
+.semicircle-container {
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  opacity: 0;
+  transform: translateX(-50%) translateY(30px);
+  transition: all 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.semicircle-container.active {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.semicircle {
+  width: 140px;
+  height: auto;
+}
+
+.two {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  transition: gap 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.growing-arrow {
+  width: 0;
+  height: auto;
+  opacity: 0;
+  /* 왼쪽 아래에서 시작 */
+  transform: scale(0.3) translate(-150px, 150px) rotate(-50deg);
+  transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.growing-arrow.active {
+  width: 1.2em;
+  opacity: 1;
+
+  transform: scale(1.2) translate(0px, -30px) rotate(-50deg);
+}
+
+/* 텍스트 등장 애니메이션 */
+.text-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.text-reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.three {
+  font-size: 5rem;
+}
+
+/* 꽃 (계속 회전하기) */
+.spinning-flower {
+  width: 1.5em;
+  height: auto;
+  margin-left: 20px;
+
+  animation: spinRotate 5s linear infinite;
+}
+
+@keyframes spinRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.contact-info {
+  width: 100%;
+  display: flex;
+  background-color: rgb(0, 0, 0);
+  padding: 50px;
+  align-items: center;
+  box-sizing: border-box;
+  justify-content: right;
+  gap: 3%;
+  color: rgb(179, 179, 179);
+}
+
+.contact-info li:first-child {
+  font-size: 3rem;
+}
+
+.contact-info li:last-child {
+  font-size: 1rem;
+  color: white;
+  letter-spacing: 3px;
+}
+.contact-info li:last-child a {
+  margin-right: 10px;
+}
+.smiletop2 {
+  position: absolute;
+  bottom: -90%;
+  left: 55%;
+  animation: smallsmile2 3s ease-in-out 0.5s infinite alternate;
+}
+
+@keyframes smallsmile2 {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+/* 마우스효과 */
+section {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+}
+
+.light {
+  background: #e9efff;
+  color: #111;
+}
+
+.dark {
+  background: #111;
+  color: #fff;
+}
+
+/* 커스텀 커서 */
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #1f3cff;
+  pointer-events: none;
+  z-index: 99999;
+  mix-blend-mode: difference;
+}
+
+/**/
+/* ========================================================
+   RESPONSIVE DESIGN (반응형 설정)
+   기존 CSS 맨 아래에 붙여넣으세요.
+   ======================================================== */
+
+/* --- 1. 태블릿 & 작은 노트북 (1024px 이하) --- */
+@media screen and (max-width: 1024px) {
+  /* 헤더 글자 크기 조정 */
+  header ul {
+    padding-right: 20px;
+  }
+  header li {
+    width: auto;
+    padding: 0 15px;
+    font-size: 1rem;
+  }
+
+  /* Visual 영역 텍스트 크기 및 위치 조정 */
+  .text {
+    width: 90%;
+    left: 5%;
+  }
+  .textleft {
+    left: 5%;
+    top: 150px;
+  }
+  .textright {
+    left: 10%;
+    top: 300px;
+  }
+  .txt {
+    left: 10%;
+    top: 400px;
+    width: 400px;
+  }
+
+  /* About 영역 박스 크기 유동적으로 변경 */
+  .hidden,
+  .textbox {
+    width: 90%;
+    left: 5%;
+    height: auto;
+  }
+  .textbox .EXPERIENCE,
+  .textbox .Certificate,
+  .textbox .EDUCATION {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    margin-bottom: 20px;
+  }
+
+  /* 갤러리 2단 그리드 (좌우 여백 확보) */
+  .art-item {
+    width: 90%;
+  }
+}
+
+/* --- 2. 모바일 (768px 이하) - 대대적인 구조 변경 --- */
+@media screen and (max-width: 768px) {
+  /* 1. 전체 폰트 및 공통 설정 */
+  html {
+    font-size: 14px;
+  } /* 기본 폰트 사이즈 줄임 */
+  body {
+    overflow-x: hidden;
+  } /* 가로 스크롤 방지 */
+
+  /* 2. 헤더 (모바일에서는 심플하게) */
+  header {
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+  header ul {
+    padding: 0;
+    width: 100%;
+    justify-content: center;
+  }
+  header li {
+    width: auto;
+    padding: 0 10px;
+    font-size: 0.9rem;
+  }
+  header ul img {
+    display: none;
+  } /* 별 아이콘 숨김 */
+
+  /* 3. Visual (메인 화면) */
+  .visualimg {
+    background-position: center;
+  }
+  .text {
+    width: 100%;
+  }
+  .textleft,
+  .textright {
+    width: 90%;
+    left: 5%;
+    transform: none;
+    text-align: center;
+  }
+  .textleft {
+    top: 120px;
+  }
+  .textright {
+    top: 200px;
+  }
+
+  .img-container {
+    left: 50%;
+    transform: translateX(-50%);
+    top: 35%;
+    width: 80%;
+  }
+  .img-container img {
+    width: 100%;
+  }
+
+  .txt {
+    position: relative;
+    top: 55%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+  }
+
+  /* 장식 요소들 숨기거나 위치 조정 (모바일에서 너무 복잡함 방지) */
+  .flowerleft,
+  .flowerbottom,
+  .arrow,
+  .smiletop,
+  .smileleft,
+  .smileright,
+  .pinkhot {
+    display: none; /* 깔끔하게 하기 위해 숨김 (선택사항) */
+  }
+
+  /* 4. About Section */
+  #about {
+    height: auto;
+    padding-bottom: 50px;
+  }
+  .lines {
+    margin-left: 50px;
+    transform: scale(0.7);
+  }
+
+  /* 텍스트 박스 위치 초기화 (absolute -> static) */
+  .hidden {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  .textbox {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .aboutmetxt {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  /* 스킬 리스트, 텍스트 흐르기 */
+  .text2 {
+    margin-top: 50px;
+  }
+  .text3 h3 {
+    font-size: 60px;
+  } /* 폰트 줄임 */
+
+  /* 5. Gallery (페이지 3) - 한 줄로 쌓기 */
+  .gallery-container {
+    flex-direction: column;
+  }
+  .gallery-text-sticky {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    top: 0;
+  }
+  .text-inner .artworktext {
+    font-size: 3rem;
+  }
+  .art-item {
+    margin-top: 50px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* 6. Portfolio (아코디언) - 세로 모드로 변경 */
+  #portfolio {
+    height: auto;
+    min-height: 100vh;
+  }
+  .portfolio-container {
+    flex-direction: column; /* 세로 정렬 */
+    height: auto;
+  }
+
+  .portfolio-item {
+    width: 100%;
+    height: 100px; /* 닫혔을 때 높이 */
+    border-bottom: 1px solid #333;
+    flex: none; /* flex 비율 해제 */
+  }
+
+  /* 활성화 상태 (클릭 시) */
+  .portfolio-item.active {
+    height: auto; /* 내용만큼 늘어남 */
+    flex: none;
+    padding-bottom: 40px;
+  }
+
+  /* 비활성 상태 (다른게 열렸을 때) */
+  .portfolio-container.expand-mode .portfolio-item:not(.active) {
+    height: 60px;
+    flex: none;
+  }
+
+  /* 프리뷰 레이어 수정 */
+  .preview-layer {
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+  }
+  .portfolio-item h2 {
+    font-size: 20px;
+  }
+  .portfolio-item .preview-icon {
+    width: 80px;
+    height: 80px;
+  }
+
+  /* 디테일 레이어 모바일화 */
+  .portfolio-item .detail-layer {
+    position: relative;
+    flex-direction: column;
+    padding: 20px;
+    height: auto;
+  }
+  .portfolio-item.active .left-content {
+    padding: 0;
+  }
+  .portfolio-item.active .thumbnail-area {
+    height: 250px;
+    margin-top: 20px;
+  }
+  .portfolio-item.active .character-area {
+    display: none;
+  } /* 공간 부족으로 숨김 */
+
+  /* 7. Creative (Carousel) - 3D 끄고 단순화 */
+  .illust {
+    height: 80vh;
+  }
+  .scene {
+    perspective: none;
+  }
+  .carousel {
+    transform: none !important; /* JS가 건드리는 transform 강제 해제 */
+    width: 100%;
+    height: 100%;
+  }
+
+  /* 카드들을 겹쳐두고 JS로 opacity만 조절하거나, 
+     JS 로직과 충돌나지 않게 크기만 줄임 */
+  .card {
+    width: 85%;
+    min-height: 400px;
+    left: 50% !important;
+    margin-left: -42.5%; /* width의 절반 */
+    transform: none !important; /* 3D 회전 제거 */
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  /* 현재 활성화된 카드만 보이게 하는 건 JS 로직에 의존해야 함.
+     하지만 CSS로 강제 조정하기 위해 아래 트릭 사용 */
+  .card[style*="z-index: 100"] {
+    opacity: 1 !important;
+    transform: translateZ(0) !important;
+    z-index: 100 !important;
+  }
+
+  /* 카드 뒷면/앞면 처리 */
+  .card-face {
+    width: 100%;
+    position: relative;
+    backface-visibility: visible;
+  }
+  .card-back {
+    transform: none;
+    border: none;
+    width: 100%;
+    height: auto;
+    text-align: left;
+  }
+  .card-front {
+    width: 100%;
+    height: auto;
+    border: none;
+  }
+
+  /* 8. Contact */
+  .contact-txt {
+    padding-top: 20%;
+  }
+  .text-line li {
+    font-size: 3rem;
+  }
+  .combined-line {
+    font-size: 2.5rem;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .one.active {
+    gap: 5px;
+  }
+  .semicircle {
+    width: 80px;
+  }
+  .contact-info {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 30px;
+    gap: 20px;
+  }
+  .contact-info li:first-child {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+}
