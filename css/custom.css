@@ -1,4 +1,4 @@
-31.76 KB •1708줄 • 원본과 형식이 일치하지 않을 수 있습니다 @font-face {
+@font-face {
   font-family: "GyeonggiMillenniumBackground";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2410-3@1.0/Batang_Regular.woff")
     format("woff");
@@ -57,17 +57,15 @@ header {
   height: 70px;
   display: flex;
   justify-content: right;
-  z-index: 1000; /* z-index 높임 */
+  z-index: 1000;
   background-color: transparent;
   position: fixed;
-  transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+  transition: color 0.3s ease;
 }
 
-/* 스크롤 시 적용될 클래스 */
+/* 스크롤 시 글씨만 반전 */
 header.scrolled {
-  background-color: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: transparent;
 }
 
 header ul {
@@ -78,6 +76,7 @@ header ul {
   font-family: "Concert One", sans-serif;
   font-size: 1.2rem;
   height: 70px;
+  transition: color 0.3s ease;
 }
 
 header li {
@@ -104,20 +103,13 @@ header ul li:hover img {
   transform: rotate(180deg);
 }
 
-/* 스크롤 시 텍스트 색상 조정 */
-header.scrolled ul {
-  color: #333;
-  filter: invert(10%);
+/* 스크롤 시 텍스트 색상만 변경 */
+/* header.scrolled ul {
+  color: #fff;
 }
 
 header.scrolled ul img {
-  filter: invert(50%);
-}
-/* longbox */
-/* .longbox {
-  width: 100%;
-  height: 200vh;
-  position: relative;
+  filter: invert(100%);
 } */
 
 /* visual */
@@ -161,12 +153,10 @@ header.scrolled ul img {
 @keyframes slideInLeft {
   0% {
     opacity: 0;
-
     transform: translate(-700px, 200px);
   }
   100% {
     opacity: 1;
-
     transform: translate(0, 0);
   }
 }
@@ -174,12 +164,10 @@ header.scrolled ul img {
 @keyframes slideInRight {
   0% {
     opacity: 0;
-
     transform: translate(700px, -100px);
   }
   100% {
     opacity: 1;
-
     transform: translate(0, 0);
   }
 }
@@ -188,7 +176,6 @@ header.scrolled ul img {
   position: fixed;
   top: 15%;
   left: 35%;
-
   z-index: 1;
   pointer-events: none;
   opacity: 0;
@@ -332,82 +319,80 @@ header.scrolled ul img {
   position: relative;
 }
 .lines {
-  width: 300px;
-  height: 300px;
+  width: 30%;
+  height: 30%;
   margin-left: 350px;
-
   position: relative;
   opacity: 0;
 }
 .linepink {
   background-color: rgb(255, 0, 153);
-  width: 200px;
-  height: 15px;
+  width: 35%;
+  height: 6%;
   transform: rotate(30deg);
   position: absolute;
-  top: 35px;
-  left: 70px;
+  top: 10%;
+  left: 11%;
 }
 .lineyellow {
   background-color: rgb(237, 255, 74);
-  width: 100px;
-  height: 10px;
+  width: 17%;
+  height: 3%;
   transform: rotate(40deg);
   position: absolute;
-  top: 20px;
-  left: 150px;
+  top: 9%;
+  left: 28%;
 }
 .linewhite {
   background-color: white;
-  width: 220px;
-  height: 5px;
+  width: 35%;
+  height: 1%;
   transform: rotate(10deg);
   position: absolute;
-  top: 80px;
-  left: 50px;
+  top: 28%;
+  left: 8%;
 }
 .linesky {
   background-color: rgb(0, 187, 255);
-  width: 100px;
-  height: 10px;
-  transform: rotate(0deg);
+  width: 15%;
+  height: 5%;
+  transform: rotate(-10deg);
   position: absolute;
-  top: 90px;
-  left: 30px;
+  top: 36%;
+  left: 10%;
 }
 .text2 {
   width: 100%;
   background-color: rgb(125, 44, 245);
-  margin-top: 400px;
+  margin-top: 22%;
   position: relative;
   z-index: 10;
+  height: 7%;
 }
-.skill-list {
+.text2 .skill-list {
   width: fit-content;
-  height: 70px;
-
+  height: 100%;
   color: white;
   display: flex;
   align-items: center;
-  animation: scroll 40s linear infinite;
+  animation: scroll2 40s linear infinite;
   flex-shrink: 0;
 }
-.skill-list li {
+/* .skill-list li {
   box-sizing: border-box;
-  gap: 10px;
+  gap: 10%;
   justify-content: center;
   display: flex;
   align-items: center;
-  width: 200px;
-  font-size: 23px;
+  width: 24%;
+  font-size: 0.2rem;
   font-family: "Hammersmith One", sans-serif;
 }
 .skill-list li img {
-  margin-right: 10px;
   filter: invert(100%);
-}
+} */
 
-@keyframes scroll {
+@keyframes scroll2 {
   0% {
     transform: translateX(-50%);
   }
@@ -450,18 +435,16 @@ header.scrolled ul img {
 }
 .hidden {
   width: 1200px;
-  height: 420px;
-
+  height: 500px;
   overflow: hidden;
   position: absolute;
   left: 400px;
-  top: 280px;
+  top: 195px;
   z-index: 0;
 }
 .textbox {
   width: 1200px;
   height: 420px;
-  font-size: 18px;
   position: relative;
 }
 .textbox .EXPERIENCE img {
@@ -492,13 +475,13 @@ header.scrolled ul img {
 }
 .Certificate {
   left: 70px;
-  top: 76%;
+  top: 90%;
   position: absolute;
   font-size: 16px;
 }
 .EXPERIENCE {
   left: 70px;
-  top: 55%;
+  top: 66%;
   position: absolute;
   font-size: 15px;
 }
@@ -508,8 +491,6 @@ header.scrolled ul img {
   font-style: italic;
 }
 .EDUCATION {
-  /* left: 70px;
-  top: 85%; */
   right: 80px;
   bottom: 10%;
   position: absolute;
@@ -588,6 +569,9 @@ header.scrolled ul img {
 .smile2 i {
   transform: rotate(10deg);
 }
+.arrow {
+  width: 7%;
+}
 .smile2 {
   color: #5a5174;
   position: absolute;
@@ -597,6 +581,7 @@ header.scrolled ul img {
   transform: rotate(-30deg);
   animation: smile2 2s ease-in-out 1s infinite alternate;
 }
+
 @keyframes smile2 {
   0% {
     transform: rotate(-30deg) translateY(0);
@@ -669,8 +654,6 @@ header.scrolled ul img {
   }
 }
 
-/*포트폴리오 일러스트카드 */
-/*포트폴리오 일러스트카드 */
 :root {
   --card-width: 550px;
   --bg-color: #f4f4f4;
@@ -678,10 +661,11 @@ header.scrolled ul img {
   --text-bg: #ffffff;
 }
 
-/* creative 전체 영역에 그리드 배경 적용 */
+/* creative 전체 영역 */
 #creative {
   width: 100%;
 
+  box-sizing: border-box;
   background-color: #f4f4f4;
   background-image: linear-gradient(
       to right,
@@ -701,7 +685,6 @@ header.scrolled ul img {
   align-items: center;
   overflow: hidden;
   z-index: 1;
-  /* background 관련 제거 - 부모(#creative)가 처리 */
 }
 
 .scene {
@@ -738,19 +721,18 @@ header.scrolled ul img {
 
 .card-face {
   position: absolute;
-
   backface-visibility: hidden;
   border-radius: 24px;
-  overflow: hidden; /* ⬅️ 이미지 자르기 방지를 위해 여기서는 overflow:hidden을 유지해야 합니다. */
+  overflow: hidden;
 }
 
 .card-front {
   width: 600px;
-  height: 100%; /* ⬅️ 이미지 영역이 카드의 높이를 꽉 채우도록 설정 */
-  display: flex; /* ⬅️ 이미지 정렬을 위해 flexbox 사용 */
-  align-items: center; /* ⬅️ 세로 중앙 정렬 */
-  justify-content: center; /* ⬅️ 가로 중앙 정렬 */
-  background-color: white; /* ⬅️ 이미지 배경색 */
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
   border: 4px solid rgb(214, 214, 214);
   box-sizing: border-box;
   padding: 30px;
@@ -758,11 +740,11 @@ header.scrolled ul img {
 
 .card-front img {
   display: block;
-  max-width: 100%; /* ⬅️ 부모 너비를 넘지 않도록 */
-  max-height: 100%; /* ⬅️ 부모 높이를 넘지 않도록 (세로 이미지를 위한 핵심) */
-  width: auto; /* ⬅️ 가로 세로 비율 유지를 위해 width: auto로 변경 */
-  height: auto; /* ⬅️ 가로 세로 비율 유지를 위해 height: auto로 변경 */
-  object-fit: contain; /* ⬅️ 이미지 잘림 없이 컨테이너에 맞춤 (가장 중요) */
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
 }
 
 .card-back {
@@ -773,7 +755,6 @@ header.scrolled ul img {
   text-align: right;
   display: flex;
   flex-direction: column;
-
   justify-content: space-between;
   border: 4px solid #000000;
   transform: rotateY(180deg) translate(-100px, 50px);
@@ -782,7 +763,6 @@ header.scrolled ul img {
 }
 .array {
   box-sizing: border-box;
-
   width: 100%;
   padding-right: 30px;
   display: flex;
@@ -817,7 +797,6 @@ header.scrolled ul img {
 .array .yellow {
   background-color: #fbff06;
 }
-
 .array .skyblue {
   background-color: #7aa0ae;
   color: white;
@@ -853,7 +832,6 @@ header.scrolled ul img {
   height: 80px;
   text-align: right;
   font-size: 1.5rem;
-
   color: #ffffff;
   font-weight: 800;
 }
@@ -918,9 +896,6 @@ header.scrolled ul img {
   margin: 0px auto;
   display: flex;
   justify-content: center;
-  /*
-  overflow-x: hidden;*/
-
   box-sizing: border-box;
   position: relative;
 }
@@ -939,7 +914,6 @@ header.scrolled ul img {
   width: 100%;
 }
 
-/* Sticky Text */
 .gallery-text-sticky {
   width: 300px;
   height: 100vh;
@@ -956,13 +930,12 @@ header.scrolled ul img {
   position: static;
   top: auto;
   height: auto;
-
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  opacity: 0; /* JS로 나타나게 처리 */
+  opacity: 0;
 }
 
 .text-inner .artworktext {
@@ -972,7 +945,6 @@ header.scrolled ul img {
   white-space: nowrap;
 }
 .text-inner .sub-title3 {
-  width: 400px;
   font-size: 1rem;
   line-height: 1.6;
   word-break: keep-all;
@@ -982,21 +954,19 @@ header.scrolled ul img {
   margin-top: 30px;
   font-size: 16px;
 }
-/* Art Items */
-/* 이미지 원본 비율 유지 설정 */
+
 .art-item {
   width: 70%;
-  height: auto; /* 이미지 크기에 맞춰 높이 자동 조절 */
+  height: auto;
   margin-top: 300px;
   position: relative;
-
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
   transition: transform 0.3s ease;
 }
 
 .art-item img {
   width: 100%;
-  height: auto; /* 이미지 원본 비율 유지 */
+  height: auto;
   display: block;
   transition: filter 0.3s ease;
 }
@@ -1028,7 +998,7 @@ header.scrolled ul img {
   box-sizing: border-box;
 }
 .art-overlay h3 {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 700;
   margin-bottom: 10px;
   transform: translateY(20px);
@@ -1036,7 +1006,7 @@ header.scrolled ul img {
   line-height: 40px;
 }
 .art-overlay h3 span {
-  font-size: 40px;
+  font-size: 2.5rem;
 }
 .art-overlay p {
   margin-top: 20px;
@@ -1046,7 +1016,9 @@ header.scrolled ul img {
   transform: translateY(20px);
   transition: transform 0.3s ease 0.1s;
   line-height: 25px;
-  word-break: keep-all;
+  text-align: justify;
+  word-break: break-all;
+  max-width: 250px;
 }
 
 .art-item:hover {
@@ -1059,14 +1031,12 @@ header.scrolled ul img {
 .art-item:hover .art-overlay p {
   transform: translateY(0);
 }
-/* Portfolio Hidden State (page3 끝에 배치) */
 
 .portfolio-reveal-section {
   position: relative;
   width: 100%;
   height: 100vh;
   display: flex;
-
   justify-content: center;
   background-color: #000000;
   z-index: 40;
@@ -1100,7 +1070,6 @@ header.scrolled ul img {
   z-index: 100;
 }
 
-/* PORTFOLIO-clonecoding섹션 */
 #portfolio {
   background-color: white;
   box-sizing: border-box;
@@ -1110,18 +1079,15 @@ header.scrolled ul img {
   width: 100%;
   max-width: 100%;
   height: 800px;
-
   border-radius: 20px;
-
   display: flex;
   gap: 0;
   position: relative;
   transition: all 0.3s ease;
 }
 
-/* --- 공통 아이템 스타일 --- */
 .portfolio-item {
-  flex: 1; /* [중요] 처음에는 모두 1의 비율 (똑같은 크기) */
+  flex: 1;
   border: 2px solid rgb(47, 47, 47);
   transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
@@ -1138,7 +1104,6 @@ header.scrolled ul img {
   position: relative;
 }
 
-/* 처음좁혀진 상태 */
 .portfolio-item .preview-layer {
   width: 100%;
   height: 100%;
@@ -1146,9 +1111,9 @@ header.scrolled ul img {
   padding: 50px 10px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* 제목 위, 아이콘 아래 */
+  justify-content: space-between;
   transition: opacity 0.3s;
-  opacity: 1; /* 기본적으로 보이게 설정 */
+  opacity: 1;
   pointer-events: auto;
   color: #333;
 }
@@ -1157,14 +1122,13 @@ header.scrolled ul img {
   color: #000;
   font-size: 40px;
   font-weight: 900;
-
   white-space: nowrap;
   font-family: "Montserrat", sans-serif;
 }
 
 .portfolio-item .preview-icon {
   position: relative;
-  align-self: flex-end; /* 오른쪽 정렬 */
+  align-self: flex-end;
   width: 250px;
   height: 250px;
 }
@@ -1183,15 +1147,12 @@ header.scrolled ul img {
   display: block;
 }
 
-/* 디테일 레이어 (초기엔 숨김) - fadeIn/fadeOut 사용을 위해 display:none 제거 */
 .portfolio-item .detail-layer {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-
-  /* 초기에는 숨김 처리 */
   display: none;
   opacity: 0;
   pointer-events: none;
@@ -1199,35 +1160,29 @@ header.scrolled ul img {
   background: white;
   padding: 80px 60px 40px 100px;
   box-sizing: border-box;
-
   justify-content: space-between;
   transition: opacity 0.5s ease;
 }
 
-/* --- 2. 활성화 상태 (클릭된 놈) --- */
 .portfolio-item.active {
-  flex: 4; /* 넓어짐 */
+  flex: 4;
   cursor: default;
   background: white;
 }
 
-/* 활성화 시 프리뷰 숨김 */
 .portfolio-item.active .preview-layer {
   opacity: 0;
   pointer-events: none;
 }
 
-/* 활성화 시 디테일 보임 */
 .portfolio-item.active .detail-layer {
   display: flex;
   justify-content: space-between;
   gap: 5%;
   opacity: 1;
   pointer-events: auto;
-  /* JS에서 fadeIn을 사용하므로 @keyframes fadeIn은 제거합니다. */
 }
 
-/* 상세 내용 스타일 */
 .portfolio-item.active .left-content {
   flex: 1;
   display: flex;
@@ -1288,12 +1243,7 @@ header.scrolled ul img {
   line-height: 1.6;
   color: #333;
 }
-/* .portfolio-item.active .item-date {
-  font-size: 0.9rem;
-  line-height: 1.6;
-  color: #777;
-  margin-bottom: 50px;
-} */
+
 .portfolio-item.active .character-area {
   display: flex;
   align-items: flex-end;
@@ -1303,10 +1253,8 @@ header.scrolled ul img {
 .portfolio-item.active .character-placeholder {
   width: 400px;
   height: 300px;
-
   display: flex;
   align-items: center;
-
   justify-content: left;
 }
 .portfolio-item.active .character-placeholder img {
@@ -1317,7 +1265,6 @@ header.scrolled ul img {
 
 .portfolio-item.active .thumbnail-area {
   flex: 1.4;
-
   display: flex;
   align-items: center;
   justify-content: right;
@@ -1337,14 +1284,11 @@ header.scrolled ul img {
   object-fit: cover;
 }
 
-/* --- 3. 비활성 상태 (다른게 열렸을 때 쪼그라드는 놈들) --- */
-/* 컨테이너에 'expand-mode'가 있을 때, active가 아닌 녀석들 */
 .portfolio-container.expand-mode .portfolio-item:not(.active) {
-  flex: 0 0 80px; /* 좁게 축소 */
+  flex: 0 0 80px;
   background: rgba(255, 255, 255, 0.1);
 }
 
-/* 좁아진 상태에서 프리뷰 레이어 스타일 변경 */
 .portfolio-container.expand-mode .portfolio-item:not(.active) .preview-layer {
   padding: 20px 0;
   align-items: center;
@@ -1352,28 +1296,25 @@ header.scrolled ul img {
 }
 
 .portfolio-container.expand-mode .portfolio-item:not(.active) .preview-title {
-  writing-mode: vertical-rl; /* 세로 쓰기만 유지 */
+  writing-mode: vertical-rl;
   text-orientation: mixed;
-  /* transform: rotate(180deg);  <-- 삭제하거나 주석 처리 */
   margin: 0;
 }
 
 .portfolio-container.expand-mode .portfolio-item:not(.active) .preview-icon {
-  display: none; /* 좁아지면 아이콘 숨김 */
+  display: none;
 }
 .portfolio-container.expand-mode
   .portfolio-item:not(.active)
   .preview-layer
   h3 {
-  display: none; /* 좁아지면 아이콘 숨김 */
+  display: none;
 }
 
-/* 호버 효과 */
 .portfolio-item:not(.active):hover {
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* adobi illust */
 .loader-wrapper {
   position: relative;
   width: 100px;
@@ -1392,7 +1333,6 @@ header.scrolled ul img {
   z-index: 1;
 }
 
-/* 물 컨테이너 */
 .water-container {
   position: absolute;
   top: 0;
@@ -1404,7 +1344,6 @@ header.scrolled ul img {
   z-index: 2;
 }
 
-/* 물 효과 */
 .water {
   position: absolute;
   bottom: 0;
@@ -1419,7 +1358,6 @@ header.scrolled ul img {
   );
 }
 
-/* 물결 효과 */
 .water::before,
 .water::after {
   content: "";
@@ -1448,7 +1386,6 @@ header.scrolled ul img {
   }
 }
 
-/* AI 텍스트 */
 .ai-text {
   position: absolute;
   top: 50%;
@@ -1463,48 +1400,58 @@ header.scrolled ul img {
   letter-spacing: -2px;
 }
 
-/* text4 */
 .text4 {
   width: 100%;
-  background-color: rgb(0, 0, 0);
-
+  background-color: #000;
+  overflow: hidden;
   position: relative;
   z-index: 10;
+  padding: 10px 0;
 }
-.skill-list {
-  width: fit-content;
-  height: 70px;
 
-  color: white;
+.skill-list {
   display: flex;
   align-items: center;
-  animation: scroll 40s linear infinite;
-  flex-shrink: 0;
+  width: max-content;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  animation: scroll 30s linear infinite;
 }
+
 .skill-list li {
-  box-sizing: border-box;
-  gap: 10px;
-  justify-content: center;
   display: flex;
   align-items: center;
-  width: 200px;
-  font-size: 23px;
+  padding: 0 50px;
+  color: #fff;
+  font-size: 24px;
   font-family: "Hammersmith One", sans-serif;
+  white-space: nowrap;
+  font-weight: 400;
 }
+
 .skill-list li img {
-  margin-right: 10px;
+  width: 20px;
+  margin-right: 15px;
   filter: invert(100%);
+}
+
+@media (max-width: 1024px) {
+  .skill-list li {
+    font-size: 18px;
+    padding: 0 30px;
+  }
 }
 
 @keyframes scroll {
   0% {
-    transform: translateX(-50%);
+    transform: translateX(0);
   }
   100% {
-    transform: translateX(0%);
+    transform: translateX(-50%);
   }
 }
-/*contact*/
+
 #contact {
   width: 100%;
   height: 100vh;
@@ -1516,7 +1463,6 @@ header.scrolled ul img {
 .contact-txt {
   color: #333;
   flex: 1;
-
   display: flex;
   align-items: center;
   padding: 2% 0% 0%;
@@ -1538,7 +1484,6 @@ header.scrolled ul img {
   font-family: "Cafe24ProSlim";
 }
 
-/* 한 줄로 합친 라인 */
 .combined-line {
   display: flex;
   align-items: center;
@@ -1559,7 +1504,6 @@ header.scrolled ul img {
   gap: 15px;
 }
 
-/* 반원 컨테이너 */
 .semicircle-container {
   position: absolute;
   top: -80px;
@@ -1593,7 +1537,6 @@ header.scrolled ul img {
   width: 0;
   height: auto;
   opacity: 0;
-  /* 왼쪽 아래에서 시작 */
   transform: scale(0.3) translate(-150px, 150px) rotate(-50deg);
   transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -1601,11 +1544,9 @@ header.scrolled ul img {
 .growing-arrow.active {
   width: 1.2em;
   opacity: 1;
-
   transform: scale(1.2) translate(0px, -30px) rotate(-50deg);
 }
 
-/* 텍스트 등장 애니메이션 */
 .text-reveal {
   opacity: 0;
   transform: translateY(30px);
@@ -1621,12 +1562,10 @@ header.scrolled ul img {
   font-size: 5rem;
 }
 
-/* 꽃 (계속 회전하기) */
 .spinning-flower {
   width: 1.5em;
   height: auto;
   margin-left: 20px;
-
   animation: spinRotate 5s linear infinite;
 }
 
@@ -1650,7 +1589,9 @@ header.scrolled ul img {
   gap: 3%;
   color: rgb(179, 179, 179);
 }
-
+.contact-info li {
+  margin-top: 50px;
+}
 .contact-info li:first-child {
   font-size: 3rem;
 }
@@ -1659,6 +1600,7 @@ header.scrolled ul img {
   font-size: 1rem;
   color: white;
   letter-spacing: 3px;
+  margin-top: 30px;
 }
 .contact-info li:last-child a {
   margin-right: 10px;
@@ -1681,7 +1623,7 @@ header.scrolled ul img {
     transform: translateY(0);
   }
 }
-/* 마우스효과 */
+
 section {
   height: 100vh;
   display: flex;
@@ -1700,7 +1642,6 @@ section {
   color: #fff;
 }
 
-/* 커스텀 커서 */
 .cursor {
   position: fixed;
   top: 0;
@@ -1714,15 +1655,8 @@ section {
   mix-blend-mode: difference;
 }
 
-/**/
-/* ========================================================
-   RESPONSIVE DESIGN (반응형 설정)
-   기존 CSS 맨 아래에 붙여넣으세요.
-   ======================================================== */
-
-/* --- 1. 태블릿 & 작은 노트북 (1024px 이하) --- */
-@media screen and (max-width: 1024px) {
-  /* 헤더 글자 크기 조정 */
+/* 태블릿 */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
   header ul {
     padding-right: 20px;
   }
@@ -1732,60 +1666,506 @@ section {
     font-size: 1rem;
   }
 
-  /* Visual 영역 텍스트 크기 및 위치 조정 */
+  .visualimg {
+    height: 65vh;
+  }
+  .img-container {
+    left: 43%;
+    transform: translateX(-50%);
+    top: 5%;
+    width: 45%;
+  }
+  .img-container img {
+    width: 100%;
+  }
   .text {
     width: 90%;
     left: 5%;
   }
   .textleft {
     left: 5%;
-    top: 150px;
+    top: 120px;
   }
   .textright {
     left: 10%;
-    top: 300px;
+    top: 250px;
   }
   .txt {
-    left: 10%;
-    top: 400px;
-    width: 400px;
+    left: 34%;
+    top: 300px;
+    width: 34%;
+  }
+  .flowerleft,
+  .flowerbottom,
+  .smiletop,
+  .smileleft,
+  .smileright,
+  .heartline {
+    width: 15%;
+  }
+  #about {
+    height: 70vh;
+    padding-top: 40px;
+    box-sizing: border-box;
   }
 
-  /* About 영역 박스 크기 유동적으로 변경 */
+  .aboutmetxt {
+    margin-top: -400px;
+  }
+  .smileright {
+    width: 25%;
+    bottom: -150px;
+  }
+  #about > svg,
+  .smile1,
+  .smile2,
+  .smile3,
+  .heartline {
+    display: none;
+  }
+  .heart1,
+  .arrow,
+  .pinkhot {
+    width: 10%;
+  }
+  .redhot {
+    top: 0%;
+    width: 10%;
+    left: 15%;
+  }
+  .lines {
+    margin-left: 50px;
+    position: relative;
+    opacity: 0;
+  }
+  .text3 {
+    margin-top: 40px;
+  }
+  .text3 h3 {
+    font-size: 4rem;
+  }
+  .text2 {
+    top: 12%;
+    height: 40px;
+  }
+  .text2 ul {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    font-weight: 100;
+  }
+
+  .text2 ul img {
+    width: 10px;
+  }
+
+  .text2 li {
+    font-size: 15px;
+    width: 130px;
+  }
+
+  .text2 li h4 {
+    font-size: 15px;
+    margin: 0;
+  }
+
+  .hidden {
+    margin-top: 70px;
+    overflow: visible;
+    position: absolute;
+  }
+
   .hidden,
   .textbox {
     width: 90%;
     left: 5%;
+    top: 30%;
     height: auto;
   }
-  .textbox .EXPERIENCE,
+  .textbox h5 {
+    font-size: 1rem;
+  }
+  .textbox h6 {
+    font-size: 0.9rem;
+  }
+  .textbox h6 span {
+    font-size: 0.8rem;
+  }
   .textbox .Certificate,
   .textbox .EDUCATION {
     position: relative;
-    top: auto;
-    left: auto;
+    top: 20%;
+    left: 5%;
     right: auto;
     bottom: auto;
     margin-bottom: 20px;
   }
 
-  /* 갤러리 2단 그리드 (좌우 여백 확보) */
+  .EXPERIENCE {
+    position: absolute;
+    top: 10%;
+    left: 45%;
+  }
+  .gallery-container {
+    margin-bottom: 60px;
+  }
+  .gallery-text-sticky {
+    width: 220px;
+    position: sticky;
+    top: 90px;
+    height: fit-content;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    z-index: 20;
+  }
+
+  .text-inner .artworktext {
+    font-size: 2.2rem !important;
+    margin-bottom: 15px !important;
+    line-height: 1.2;
+  }
+
+  .text-inner .sub-title3 {
+    display: none;
+  }
+
+  .loader-wrapper {
+    width: 65px !important;
+    height: 65px !important;
+    margin: 15px 0 !important;
+  }
+
+  .ai-text {
+    font-size: 22px !important;
+    letter-spacing: -1px !important;
+  }
+
+  .text-inner p {
+    font-size: 13px !important;
+    margin-top: 10px !important;
+  }
+
   .art-item {
-    width: 90%;
+    width: 95% !important;
+    margin-top: 80px !important;
+  }
+  .left-col {
+    margin-top: 0px;
+  }
+  .right-col {
+    margin-top: 0px;
+  }
+
+  .art-overlay h3 span {
+    font-size: 1.5rem !important;
+    line-height: 1.2 !important;
+  }
+
+  .art-overlay h3 {
+    font-size: 1rem !important;
+    line-height: 1.4 !important;
+  }
+  .art-overlay p {
+    font-size: 0.85rem !important;
+    width: 95% !important;
+    max-width: none !important;
+    line-height: 1.5 !important;
+    word-break: keep-all !important;
+    margin-top: 10px !important;
+  }
+
+  .art-item {
+    margin-top: 50px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .text-inner h5 {
+    font-size: 1rem !important;
+  }
+  .portfolio-reveal-section,
+  .cattext,
+  .portfolio-anchor-icon {
+    display: none !important;
+  }
+  #portfolio {
+    margin-top: 0 !important;
+    height: auto;
+  }
+
+  #portfolio.portfolio-with-transition {
+    position: relative !important;
+    opacity: 1 !important;
+    clip-path: none !important;
+    pointer-events: auto !important;
+  }
+  .portfolio-container {
+    flex-direction: column !important;
+    height: auto !important;
+    gap: 0;
+  }
+
+  .portfolio-item {
+    width: 100%;
+    height: 150px;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid rgb(47, 47, 47);
+    overflow: hidden;
+  }
+
+  .portfolio-item .preview-layer {
+    flex-direction: row !important;
+    padding: 20px 30px !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+  }
+
+  .preview-title {
+    writing-mode: horizontal-tb !important;
+    transform: none !important;
+    text-align: left;
+    flex: 1;
+  }
+
+  .portfolio-item h2 {
+    font-size: 1.8rem !important;
+    margin: 0;
+  }
+
+  .portfolio-item h3 {
+    font-size: 0.9rem !important;
+    color: #666;
+    margin-bottom: 5px;
+  }
+
+  .portfolio-item .preview-icon {
+    width: 100px !important;
+    height: 100px !important;
+    margin-left: 20px;
+    flex-shrink: 0;
+  }
+
+  .portfolio-item.active {
+    height: auto !important;
+    min-height: 600px;
+    background: #fff;
+  }
+
+  .portfolio-item.active .preview-layer {
+    height: 100px !important;
+    border-bottom: 2px solid #eee;
+    padding: 15px 30px !important;
+  }
+
+  .portfolio-item.active .detail-layer {
+    display: flex !important;
+    flex-direction: column !important;
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    padding: 20px 30px 60px 30px !important;
+    opacity: 1 !important;
+  }
+
+  .portfolio-item.active .left-content {
+    width: 100% !important;
+    margin-bottom: 30px;
+  }
+
+  .portfolio-item.active .item-title {
+    font-size: 2rem !important;
+  }
+
+  .portfolio-item.active .item-title span {
+    display: block;
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .portfolio-item.active .character-area {
+    position: absolute;
+    right: 30px;
+    bottom: 50%;
+    width: 120px;
+  }
+
+  .portfolio-item.active .character-placeholder {
+    width: 120px !important;
+    height: 120px !important;
+  }
+
+  .portfolio-item.active .thumbnail-area {
+    width: 100% !important;
+    margin-top: 20px;
+  }
+
+  .portfolio-item.active .thumbnail-placeholder {
+    width: 100% !important;
+    height: 400px !important;
+    border: 3px solid #000;
+  }
+
+  .portfolio-container.expand-mode .portfolio-item:not(.active) {
+    height: 80px;
+    opacity: 0.6;
+  }
+  #creative {
+    opacity: 1 !important;
+    visibility: visible !important;
+    position: relative !important;
+  }
+  .illust {
+    height: auto;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  :root {
+    --card-width: 400px;
+  }
+
+  .card {
+    min-height: 450px;
+  }
+
+  .card-front {
+    width: 400px;
+    padding: 20px;
+  }
+
+  .card-back {
+    width: 350px;
+    height: 320px;
+    transform: rotateY(180deg) translate(-50px, 30px);
+  }
+
+  .card-back h2 {
+    font-size: 1.1rem;
+    height: 50px;
+    padding: 10px;
+  }
+
+  .card-back p {
+    width: 85%;
+    margin-left: 20px;
+    font-size: 0.8rem;
+  }
+
+  .nav-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+
+  .controls {
+    bottom: 30px;
+  }
+
+  #contact {
+    height: auto;
+    min-height: 80vh;
+    padding: 50px 0 0 0;
+  }
+
+  .contact-txt {
+    padding: 5% 3%;
+  }
+
+  .text-line li {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    line-height: 1.3;
+  }
+
+  .combined-line {
+    flex-direction: column;
+    gap: 0 !important;
+    font-size: 3.5rem;
+  }
+
+  .one {
+    width: 100%;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .semicircle-container {
+    top: -50px;
+  }
+
+  .semicircle {
+    width: 80px;
+  }
+
+  .two {
+    width: 100%;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .growing-arrow.active {
+    width: 1em;
+    transform: scale(1) translate(0px, -20px) rotate(-50deg);
+  }
+
+  .three {
+    font-size: 3rem;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0 20px;
+  }
+
+  .spinning-flower {
+    width: 1.2em;
+    margin-left: 10px;
+  }
+
+  .smiletop2 {
+    width: 150px;
+    bottom: -80%;
+    left: 70%;
+  }
+
+  .contact-info {
+    padding: 30px 20px;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .contact-info li:first-child {
+    font-size: 2rem;
+  }
+
+  .contact-info li:last-child {
+    font-size: 0.9rem;
+    line-height: 1.8;
+  }
+
+  .contact-info li:last-child a {
+    display: block;
+    margin-bottom: 10px;
   }
 }
 
-/* --- 2. 모바일 (768px 이하) - 대대적인 구조 변경 --- */
+/* 모바일 */
 @media screen and (max-width: 768px) {
-  /* 1. 전체 폰트 및 공통 설정 */
   html {
     font-size: 14px;
-  } /* 기본 폰트 사이즈 줄임 */
+  }
   body {
     overflow-x: hidden;
-  } /* 가로 스크롤 방지 */
+  }
 
-  /* 2. 헤더 (모바일에서는 심플하게) */
   header {
     justify-content: center;
     background-color: rgba(255, 255, 255, 0.8);
@@ -1802,11 +2182,15 @@ section {
   }
   header ul img {
     display: none;
-  } /* 별 아이콘 숨김 */
+  }
 
-  /* 3. Visual (메인 화면) */
+  .visual {
+    height: 55vh;
+  }
   .visualimg {
-    background-position: center;
+    background-size: 150% auto;
+    background-repeat: repeat;
+    background-position: bottom center;
   }
   .text {
     width: 100%;
@@ -1819,84 +2203,138 @@ section {
     text-align: center;
   }
   .textleft {
-    top: 120px;
+    top: 200px;
   }
   .textright {
-    top: 200px;
+    top: 280px;
   }
 
   .img-container {
-    left: 50%;
+    left: 40%;
     transform: translateX(-50%);
-    top: 35%;
-    width: 80%;
+    top: 15%;
+    width: 60%;
   }
   .img-container img {
     width: 100%;
   }
 
   .txt {
-    position: relative;
-    top: 55%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
+    display: none;
+  }
+  .redhot {
+    width: 10%;
+    top: 10%;
+    left: 10%;
   }
 
-  /* 장식 요소들 숨기거나 위치 조정 (모바일에서 너무 복잡함 방지) */
   .flowerleft,
   .flowerbottom,
   .arrow,
   .smiletop,
   .smileleft,
   .smileright,
-  .pinkhot {
-    display: none; /* 깔끔하게 하기 위해 숨김 (선택사항) */
+  .pinkhot,
+  .lines,
+  #about > svg,
+  .aboutmetxt,
+  .smile1,
+  .smile2,
+  .smile3,
+  .heart1,
+  .heartline {
+    display: none;
   }
 
-  /* 4. About Section */
   #about {
-    height: auto;
-    padding-bottom: 50px;
-  }
-  .lines {
-    margin-left: 50px;
-    transform: scale(0.7);
+    height: 60vh;
   }
 
-  /* 텍스트 박스 위치 초기화 (absolute -> static) */
   .hidden {
     position: relative;
     left: 0;
     top: 0;
     width: 100%;
-    height: auto;
+    overflow: visible;
     padding: 20px;
     box-sizing: border-box;
   }
+  .Certificate {
+    left: 30px;
+    top: 110%;
+    position: absolute;
+    font-size: 16px;
+  }
+  .EXPERIENCE {
+    left: 30px;
+    top: 55%;
+    position: absolute;
+    font-size: 15px;
+    word-break: break-all;
+  }
+  .EXPERIENCE P {
+    margin-left: 125px;
+    font-size: 1rem;
+    font-style: italic;
+  }
+  .EDUCATION {
+    left: 30px;
+    top: 80%;
+    position: absolute;
+    font-size: 16px;
+  }
+  .textbox h6,
+  .textbox h6 span {
+    font-size: 0.9rem;
+  }
+  .textbox h5,
+  .textbox h6,
+  .textbox p {
+    color: white;
+  }
+  .textbox img {
+    opacity: 100%;
+    filter: invert(100%);
+  }
   .textbox {
+    color: white;
+    margin-top: 0px;
     width: 100%;
-    height: auto;
     display: flex;
     flex-direction: column;
   }
-  .aboutmetxt {
-    width: 100%;
-    margin-bottom: 30px;
-  }
 
-  /* 스킬 리스트, 텍스트 흐르기 */
   .text2 {
-    margin-top: 50px;
+    margin-top: -500px;
+  }
+  .text2 ul {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    font-weight: 100;
+  }
+  .text2 ul img {
+    width: 10px;
+  }
+  .text2 li {
+    font-size: 15px;
+    width: 120px;
   }
   .text3 h3 {
     font-size: 60px;
-  } /* 폰트 줄임 */
+  }
 
-  /* 5. Gallery (페이지 3) - 한 줄로 쌓기 */
   .gallery-container {
     flex-direction: column;
+    padding-bottom: 40px;
   }
+  .left-col {
+    margin-top: 150px;
+  }
+  .right-col {
+    margin-top: -380px;
+  }
+
   .gallery-text-sticky {
     position: relative;
     width: 100%;
@@ -1904,155 +2342,521 @@ section {
     top: 0;
   }
   .text-inner .artworktext {
-    font-size: 3rem;
+    font-size: 2rem;
   }
   .art-item {
-    margin-top: 50px;
-    width: 90%;
+    margin-top: 70px;
+    width: 70%;
     margin-left: auto;
     margin-right: auto;
   }
-
-  /* 6. Portfolio (아코디언) - 세로 모드로 변경 */
-  #portfolio {
-    height: auto;
-    min-height: 100vh;
+  .artworktext {
+    margin-top: -3100px;
   }
-  .portfolio-container {
-    flex-direction: column; /* 세로 정렬 */
+  .text-inner .sub-title3 {
+    font-size: 0.8rem;
+  }
+  .loader-wrapper,
+  .text-inner p {
+    display: none;
+  }
+  .text4 {
+    width: 100%;
+    background-color: #000;
+    overflow: hidden; /* ← 핵심! 넘치는 부분 숨기기 */
+    position: relative;
+    padding: 10px 0;
+  }
+
+  .text4 ul {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    font-weight: 100;
+    width: max-content; /* ← 추가: 내용물만큼 너비 확보 */
+    animation: scroll 30s linear infinite; /* ← 애니메이션 확인 */
+  }
+
+  .text4 ul img {
+    width: 10px;
+    margin-right: 10px;
+  }
+
+  .text4 li {
+    font-size: 15px;
+    padding: 0 30px; /* width 대신 padding 사용 */
+    white-space: nowrap; /* 줄바꿈 방지 */
+  }
+
+  .art-overlay h3 span {
+    font-size: 1.5rem;
+  }
+  .art-overlay h3 {
+    font-size: 1rem;
+  }
+  .art-overlay p {
+    max-width: 70%;
+    word-break: break-all;
+    text-align: justify;
+    font-size: 0.8rem;
+    line-height: 1.4rem;
+    margin-top: -0.5rem;
+  }
+  /* 6. Portfolio (간격 확대, 캐릭터 우측 배치 및 크기 UP) */
+  .portfolio-reveal-section,
+  .cattext,
+  .portfolio-anchor-icon {
+    display: none !important;
+  }
+
+  #portfolio {
+    margin-top: 0 !important;
     height: auto;
+  }
+
+  .portfolio-container {
+    flex-direction: column !important;
+    height: auto !important;
+    /* 아이템 사이의 미세한 간격 */
   }
 
   .portfolio-item {
     width: 100%;
-    height: 100px; /* 닫혔을 때 높이 */
-    border-bottom: 1px solid #333;
-    flex: none; /* flex 비율 해제 */
-  }
-
-  /* 활성화 상태 (클릭 시) */
-  .portfolio-item.active {
-    height: auto; /* 내용만큼 늘어남 */
-    flex: none;
-    padding-bottom: 40px;
-  }
-
-  /* 비활성 상태 (다른게 열렸을 때) */
-  .portfolio-container.expand-mode .portfolio-item:not(.active) {
-    height: 60px;
-    flex: none;
-  }
-
-  /* 프리뷰 레이어 수정 */
-  .preview-layer {
-    flex-direction: row;
-    align-items: center;
-    padding: 20px;
-  }
-  .portfolio-item h2 {
-    font-size: 20px;
-  }
-  .portfolio-item .preview-icon {
-    width: 80px;
-    height: 80px;
-  }
-
-  /* 디테일 레이어 모바일화 */
-  .portfolio-item .detail-layer {
+    /* ★ 1. 한 칸당 높이를 160px로 대폭 늘려 여유 부여 */
+    height: 160px;
+    border-bottom: 1px solid #eee; /* 구분선 흐리게 하여 깔끔하게 */
+    overflow: hidden;
     position: relative;
-    flex-direction: column;
-    padding: 20px;
-    height: auto;
+    background: #fff;
+    display: flex;
+    align-items: center;
   }
-  .portfolio-item.active .left-content {
-    padding: 0;
-  }
-  .portfolio-item.active .thumbnail-area {
-    height: 250px;
-    margin-top: 20px;
-  }
-  .portfolio-item.active .character-area {
-    display: none;
-  } /* 공간 부족으로 숨김 */
 
-  /* 7. Creative (Carousel) - 3D 끄고 단순화 */
-  .illust {
-    height: 80vh;
-  }
-  .scene {
-    perspective: none;
-  }
-  .carousel {
-    transform: none !important; /* JS가 건드리는 transform 강제 해제 */
+  /* 내부 레이아웃 정렬 */
+  .preview-layer {
     width: 100%;
     height: 100%;
+    display: flex !important;
+    flex-direction: row !important; /* 가로 배치 */
+    align-items: center !important; /* 세로 중앙 */
+    justify-content: space-between !important; /* ★ 2. 글자는 왼쪽 끝, 캐릭터는 오른쪽 끝 */
+    padding: 0 25px !important; /* 좌우 여백 확대 */
+    box-sizing: border-box;
   }
 
-  /* 카드들을 겹쳐두고 JS로 opacity만 조절하거나, 
-     JS 로직과 충돌나지 않게 크기만 줄임 */
-  .card {
-    width: 85%;
-    min-height: 400px;
-    left: 50% !important;
-    margin-left: -42.5%; /* width의 절반 */
-    transform: none !important; /* 3D 회전 제거 */
-    opacity: 0;
-    transition: opacity 0.5s ease;
+  /* 글자 영역 */
+  .preview-title {
+    writing-mode: horizontal-tb !important;
+    transform: none !important;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* 글자 사이 간격 */
   }
 
-  /* 현재 활성화된 카드만 보이게 하는 건 JS 로직에 의존해야 함.
-     하지만 CSS로 강제 조정하기 위해 아래 트릭 사용 */
-  .card[style*="z-index: 100"] {
-    opacity: 1 !important;
-    transform: translateZ(0) !important;
-    z-index: 100 !important;
+  /* 소제목 (PLATINUM 등) */
+  .preview-title span,
+  .portfolio-item h3 {
+    display: block;
+    font-size: 0.8rem !important;
+    color: #888;
+    margin: 0;
+    letter-spacing: 1px;
   }
 
-  /* 카드 뒷면/앞면 처리 */
-  .card-face {
+  /* 메인 제목 (CLON-CODING 등) */
+  .portfolio-item h2 {
+    font-size: 1.2rem !important; /* 가독성 좋은 크기로 조정 */
+    line-height: 1.2;
+    margin: 0;
+    font-weight: 900;
+    color: #000;
+  }
+
+  /* ★ 3. 캐릭터 영역 (크기 키우고 오른쪽 고정) ★ */
+  /* 캐릭터를 담는 컨테이너 */
+  .portfolio-item .preview-icon,
+  .portfolio-item .preview-layer .preview-icon {
+    display: block !important;
+    position: relative !important; /* 이미지 겹치기를 위해 relative */
+    width: 110px !important;
+    height: 110px !important;
+    margin-left: 15px !important;
+    flex-shrink: 0;
+  }
+
+  /* 첫 번째 이미지 (기본/흑백) */
+  .portfolio-item .preview-icon img:nth-child(1) {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    position: relative;
-    backface-visibility: visible;
+    height: 100%;
+    object-fit: contain;
+    display: block;
   }
-  .card-back {
-    transform: none;
-    border: none;
+
+  /* 두 번째 이미지 (컬러) - 평소엔 숨김 */
+  .portfolio-item .preview-icon img:nth-child(2) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: none !important; /* 기본적으로 강제 숨김 */
+  }
+
+  /* [핵심] 호버하거나 활성화(클릭) 되었을 때 이미지 교체 */
+  .portfolio-item:hover .preview-icon img:nth-child(2),
+  .portfolio-item.active .preview-icon img:nth-child(2) {
+    display: block !important; /* 컬러 이미지 보임 */
+  }
+
+  .portfolio-item:hover .preview-icon img:nth-child(1),
+  .portfolio-item.active .preview-icon img:nth-child(1) {
+    display: none !important; /* 흑백 이미지 숨김 */
+  }
+
+  /* 클릭해서 열렸을 때 (Active) */
+  /* --- 활성화(클릭) 상태 --- */
+  .portfolio-item.active {
+    height: auto !important;
+    min-height: 500px;
+    background: #fff !important;
+  }
+
+  /* 활성화 시 제목바 (상단) */
+  .portfolio-item.active .preview-layer {
+    height: 80px !important;
+    border-bottom: 1px solid #eee;
+    display: flex !important;
+  }
+
+  /* 중요: 상세 레이어를 'absolute'에서 'relative'로 바꿔야 내용이 순서대로 쌓입니다 */
+  .portfolio-item.active .detail-layer {
+    display: flex !important;
+    flex-direction: column !important; /* 위아래 배치 */
+    position: relative !important; /* PC의 absolute를 해제 */
+    top: -40px !important;
+    left: 0 !important;
+    opacity: 1 !important;
+    padding: 20px !important;
+
+    pointer-events: auto !important;
+  }
+  .portfolio-item.active .item-title span {
+    display: block;
+    margin-left: 0px;
+  }
+  /* 1. 왼쪽 컨텐츠 (텍스트) */
+  .portfolio-item.active .left-content {
+    width: 100% !important;
+    display: block !important;
+    position: relative;
+  }
+
+  /* 2. ★ 썸네일 영역 (비디오/이미지) ★ */
+  .portfolio-item.active .thumbnail-area {
+    display: flex !important;
+    width: 100% !important;
+
+    justify-content: center !important;
+  }
+
+  .portfolio-item.active .thumbnail-placeholder {
+    width: 100% !important;
+    height: 250px !important; /* 모바일에서 보여줄 높이 */
+    background: #000;
+    border: 2px solid #000;
+    margin-top: 30px;
+  }
+
+  /* 3. 캐릭터 영역 */
+  .portfolio-item.active .character-area {
+    position: absolute;
+    width: 160px;
+    top: -40%;
+    left: 60%;
+  }
+
+  .portfolio-item.active .character-placeholder img {
     width: 100%;
     height: auto;
-    text-align: left;
+    display: block;
   }
+  /* 7. Creative (Carousel) - 모바일은 단순한 슬라이드 형식 */
+  #creative {
+    background-size: 70px 70px;
+  }
+
+  .illust {
+    padding: 0 5%;
+    box-sizing: border-box;
+    height: auto;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .scene {
+    perspective: none;
+
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .carousel {
+    transform: none !important;
+    width: 100%;
+
+    height: auto;
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* 카드는 하나씩만 보이게 */
+  .card {
+    width: 100% !important;
+    min-height: auto;
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    transform: none !important;
+    opacity: 0 !important;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  /* 모바일에서 활성화된 카드가 확실하게 맨 위에 오도록 설정 */
+  .card.active-mobile {
+    opacity: 1 !important;
+    position: relative !important;
+    pointer-events: auto !important; /* 클릭 가능하게 강제 */
+    z-index: 1000; /* 확실하게 맨 위로 */
+    transform: none !important;
+  }
+
+  /* 썸네일 이미지도 클릭 가능하도록 커서 및 포인터 이벤트 설정 */
+  .array img {
+    cursor: pointer;
+    pointer-events: auto; /* 상위 요소 설정 무시하고 클릭 받음 */
+  }
+  /* 카드 앞면 - 큰 이미지 (크기 키우기) */
   .card-front {
     width: 100%;
+    height: 350px; /* 고정 높이 */
+    border: none; /* 테두리 제거 */
+    padding: 0;
+    margin-bottom: 20px;
+    position: relative;
+    backface-visibility: visible;
+    transform: none !important;
+    overflow: hidden;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 이미지 잘려도 되니까 cover로 */
+    display: block;
+  }
+
+  /* 카드 뒷면 - 설명 + 작은 이미지들 */
+  .card-back {
+    position: relative !important;
+    transform: none !important;
+    border: none; /* 테두리 제거 */
+    width: 100%;
     height: auto;
-    border: none;
+    text-align: right; /* 오른쪽 정렬 */
+    padding: 20px 0; /* 좌우 패딩 제거 */
+    background: transparent; /* 배경 투명 */
+    backface-visibility: visible;
+  }
+
+  .card-back h2 {
+    font-size: 1.3rem;
+    padding: 0; /* 패딩 제거 */
+    background: none; /* 검은색 배경 제거 */
+    height: auto;
+    margin-bottom: 8px;
+    color: #333; /* 텍스트 색상만 */
+    font-weight: 700;
+    text-align: right; /* 오른쪽 정렬 */
+  }
+
+  .card-back h3 {
+    font-size: 0.85rem;
+    margin: 5px 0;
+    color: #666;
+    font-weight: 400;
+    text-align: right; /* 오른쪽 정렬 */
+  }
+
+  .card-back p {
+    width: 100%;
+    margin: 15px 0;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: #555;
+    text-align: left; /* 본문은 왼쪽 정렬 유지 */
+  }
+
+  /* 작은 이미지들 - 한 줄로 오른쪽 정렬 */
+  .array {
+    padding: 0;
+    flex-wrap: nowrap; /* 줄바꿈 안 되게 */
+    gap: 8px;
+    overflow-x: auto; /* 넘치면 스크롤 */
+    justify-content: flex-end; /* 오른쪽 정렬 */
+  }
+
+  .array .more {
+    width: 50px; /* 크기 줄임 */
+    height: 50px;
+    font-size: 10px;
+    line-height: 50px;
+    flex-shrink: 0; /* 줄어들지 않게 */
+    cursor: pointer; /* 클릭 가능하게 */
+  }
+
+  /* 컨트롤 버튼 - 중앙 배치 */
+  .controls {
+    position: relative;
+    bottom: auto;
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .nav-btn {
+    width: 55px;
+    height: 55px;
+    font-size: 22px;
   }
 
   /* 8. Contact */
-  .contact-txt {
-    padding-top: 20%;
+  #contact {
+    height: auto;
+    min-height: auto;
+
+    /* 섹션 시작점 여백 */
+    word-break: keep-all;
+  }
+
+  .semicircle {
+    width: 70%;
+    /* margin-top: 30px; */
   }
   .text-line li {
-    font-size: 3rem;
+    font-size: 2.2rem; /* 글자 크기를 살짝 줄여서 세로 부피 축소 */
+    line-height: 1.2;
   }
+
   .combined-line {
-    font-size: 2.5rem;
-    flex-direction: column;
-    gap: 10px;
+    font-size: 1.8rem;
+    gap: 5px; /* 간격 축소 */
   }
-  .one.active {
-    gap: 5px;
+  #contact {
+    height: auto;
+    min-height: 80vh;
   }
+
+  /* 텍스트 라인 - 3줄로 배치 */
+  .text-line li {
+    font-size: 3.5rem; /* 7rem → 3.5rem */
+    margin-bottom: 20px;
+    line-height: 1.3;
+  }
+
+  /* 첫 번째 줄: 함께 고민하고, */
+  .combined-line {
+    flex-direction: column; /* 세로 배치 */
+    gap: 20px !important;
+    font-size: 3.5rem; /* 6rem → 3.5rem */
+  }
+
+  .one {
+    width: 100%;
+    justify-content: center;
+    /* 기본 간격 유지 */
+  }
+
+  /* 반원 위치 조정 */
+  .semicircle-container {
+    top: -50px; /* -80px → -50px */
+  }
+
   .semicircle {
-    width: 80px;
+    width: 80px; /* 140px → 80px */
   }
+
+  /* 두 번째 줄: 함께 성장하며 */
+  .two {
+    width: 100%;
+    justify-content: center;
+
+    margin-top: 10px;
+  }
+
+  /* 화살표 크기 조정 */
+  .growing-arrow.active {
+    width: 1em; /* 1.2em → 1em */
+    transform: scale(1) translate(0px, -20px) rotate(-50deg); /* scale 1.2 → 1 */
+  }
+
+  /* 세 번째 줄: 더 좋은 디자인을 만들겠습니다 */
+  .three {
+    font-size: 3rem; /* 5rem → 3rem */
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap; /* 필요시 줄바꿈 */
+  }
+
+  /* 꽃 크기 조정 */
+  .spinning-flower {
+    margin-left: 400px;
+    margin-top: -150px;
+    width: 1.2em; /* 1.5em → 1.2em */
+  }
+
+  /* 스마일 이모티콘 */
+  .smiletop2 {
+    width: 150px; /* 크기 지정 */
+    bottom: -50%;
+    left: 60%;
+  }
+
+  /* 하단 Contact Info */
   .contact-info {
+    padding: 30px 20px;
     flex-direction: column;
-    align-items: flex-start;
-    padding: 30px;
     gap: 20px;
+    text-align: center;
+    justify-content: center;
   }
+
   .contact-info li:first-child {
-    font-size: 2rem;
+    font-size: 2rem; /* 3rem → 2rem */
+  }
+
+  .contact-info li:last-child {
+    font-size: 0.9rem;
+    line-height: 1.8;
+  }
+
+  .contact-info li:last-child a {
+    display: block;
     margin-bottom: 10px;
   }
 }

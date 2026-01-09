@@ -121,26 +121,50 @@ $(window).on("load", function () {
     pin: true,
     pinSpacing: true,
   });
-  // 4.붓에서나오는 폭죽
+  // 1. 초기 상태 설정 (JS 최상단에서 확실히 숨김)
   gsap.set(".lines", { opacity: 0 });
-  gsap.set(".textbox", { y: "30%", opacity: 1 });
+  gsap.set(".textbox", { y: "30%", opacity: 0 });
 
-  gsap.to(".linepink", { x: 60, y: 30, duration: 0.5, yoyo: true, repeat: -1 });
-  gsap.to(".lineyellow", {
+  // 2. 폭죽 애니메이션을 변수에 담아두고 처음엔 멈춰둠(paused: true)
+  const pinkAni = gsap.to(".linepink", {
+    x: 60,
+    y: 30,
+    duration: 0.5,
+    yoyo: true,
+    repeat: -1,
+    paused: true,
+  });
+  const yellowAni = gsap.to(".lineyellow", {
     x: 15,
     y: 12,
     duration: 0.5,
     yoyo: true,
     repeat: -1,
+    paused: true,
   });
-  gsap.to(".linewhite", { x: 20, y: 3, duration: 0.5, yoyo: true, repeat: -1 });
-  gsap.to(".linesky", { x: 15, y: 0, duration: 0.5, yoyo: true, repeat: -1 });
+  const whiteAni = gsap.to(".linewhite", {
+    x: 20,
+    y: 3,
+    duration: 0.5,
+    yoyo: true,
+    repeat: -1,
+    paused: true,
+  });
+  const skyAni = gsap.to(".linesky", {
+    x: 15,
+    y: 0,
+    duration: 0.5,
+    yoyo: true,
+    repeat: -1,
+    paused: true,
+  });
 
+  // 3. ScrollTrigger 설정
   ScrollTrigger.create({
     trigger: "#about",
-    start: "top 80%", // ★ 화면 중간쯤에서 실행
-    end: "bottom top",
+    start: "top 20%", // 화면의 80% 지점에 #about이 보일 때 시작
     onEnter: () => {
+      // 나타나는 애니메이션
       let tl = gsap.timeline();
       tl.to(".lines", { opacity: 1, duration: 0.3 }).to(".textbox", {
         y: "0%",
@@ -148,10 +172,22 @@ $(window).on("load", function () {
         duration: 0.5,
         ease: "back.out(1.4)",
       });
+
+      // 화면에 들어왔을 때만 폭죽 애니메이션 시작!
+      pinkAni.play();
+      yellowAni.play();
+      whiteAni.play();
+      skyAni.play();
     },
     onLeaveBack: () => {
+      // 다시 위로 올리면 숨기고 애니메이션 멈춤
       gsap.to(".lines", { opacity: 0, duration: 0.3 });
-      gsap.to(".textbox", { y: "30%", duration: 0.5 });
+      gsap.to(".textbox", { y: "30%", opacity: 0, duration: 0.5 });
+
+      pinkAni.pause();
+      yellowAni.pause();
+      whiteAni.pause();
+      skyAni.pause();
     },
   });
   gsap.to("#waterFill", {
@@ -164,97 +200,140 @@ $(window).on("load", function () {
       scrub: 1,
     },
   });
-  // ==========================================
-  // 5.벽화카드 (모바일 대응 로직 추가)
+  // 5. 벽화카드 (태블릿 간격 및 크기 최적화 버전)
   // ==========================================
   const carousel = document.getElementById("carousel");
   const nextBtn = document.getElementById("nextBtn");
   const prevBtn = document.getElementById("prevBtn");
 
-  // HTML에 카드가 이미 있다고 가정하고 가져옵니다.
   const cards = document.querySelectorAll(".card");
   const totalCards = cards.length;
   let currentIndex = 0;
 
-  // 안전장치: 카드가 하나라도 있어야 실행
   if (totalCards > 0 && nextBtn && prevBtn) {
     function updateCarousel() {
-      const isMobile = window.innerWidth <= 768; // ★ 모바일 체크 (768px 이하)
+      const winW = window.innerWidth;
+      const isMobile = winW <= 768;
+      const isTablet = winW <= 1024 && winW > 768; // 태블릿 판정
 
-      const centerOffset = 220;
-      const spreadStep = 300;
+      if (isMobile) {
+        let textCardIndex = (currentIndex - 1 + totalCards) % totalCards;
 
-      cards.forEach((card, i) => {
-        // 인덱스 계산
-        let relativePos = (i - currentIndex + totalCards) % totalCards;
-        if (relativePos >= totalCards / 2) relativePos -= totalCards;
+        cards.forEach((card, i) => {
+          card.classList.remove("active-mobile");
+          if (i === textCardIndex) {
+            card.classList.add("active-mobile");
+            const currentImgObj = card.querySelector(".card-front img");
+            const imageCardIndex = (i + 1) % totalCards;
+            const targetImgObj =
+              cards[imageCardIndex].querySelector(".card-front img");
 
-        // 초기화
-        card.style.filter = "none";
-        card.style.opacity = 1;
-        card.style.zIndex = 0;
-        card.style.transition = "all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)";
+            if (currentImgObj && targetImgObj) {
+              if (!currentImgObj.getAttribute("data-origin")) {
+                currentImgObj.setAttribute(
+                  "data-origin",
+                  currentImgObj.getAttribute("src")
+                );
+              }
+              if (!card.classList.contains("user-changed")) {
+                currentImgObj.setAttribute(
+                  "src",
+                  targetImgObj.getAttribute("src")
+                );
+              }
+            }
+          } else {
+            card.classList.remove("user-changed");
+          }
+        });
+      } else {
+        // === PC & 태블릿: 3D 회전 방식 ===
 
-        // --- 모바일 (768px 이하) 대응 로직 ---
-        if (isMobile) {
-          // 모바일에서는 3D 효과를 끄고, 현재 카드만 보여줌
-          card.style.transform = "none"; // CSS의 transform: none; (3D 해제)를 따르게 함
+        // [수정 포인트] 태블릿일 때 간격을 확 줄입니다.
+        const centerOffset = isTablet ? 160 : 220; // 중앙 카드 위치 (220 -> 120)
+        const spreadStep = isTablet ? 250 : 300; // 카드 사이 간격 (300 -> 200)
+        const zDepth = isTablet ? 150 : 300; // 뒤로 들어가는 깊이 (300 -> 150)
+
+        cards.forEach((card, i) => {
+          card.classList.remove("active-mobile");
+          card.classList.remove("user-changed");
+
+          const originSrc = card
+            .querySelector(".card-front img")
+            .getAttribute("data-origin");
+          if (originSrc) {
+            card
+              .querySelector(".card-front img")
+              .setAttribute("src", originSrc);
+          }
+
+          let relativePos = (i - currentIndex + totalCards) % totalCards;
+          if (relativePos >= totalCards / 2) relativePos -= totalCards;
+
+          card.style.filter = "none";
+          card.style.opacity = 1;
+          card.style.zIndex = 0;
+          card.style.position = "absolute";
+          card.style.transition = "all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)";
 
           if (relativePos === 0) {
-            // 주인공 카드: 중앙에 위치하며 보이게
-            card.style.opacity = 1;
+            // 현재 중앙 카드
+            card.style.transform = `translateX(${centerOffset}px) translateZ(200px) rotateY(-10deg) rotateZ(3deg)`;
             card.style.zIndex = 100;
+          } else if (relativePos === -1) {
+            // 왼쪽으로 넘어간 카드
+            card.style.transform = `translateX(-${centerOffset}px) translateZ(100px) rotateY(200deg) rotateZ(10deg)`;
+            card.style.zIndex = 90;
+          } else if (relativePos > 0) {
+            // 오른쪽 대기 카드들
+            const startX = centerOffset + (isTablet ? 40 : 60);
+            const x = startX + relativePos * spreadStep;
+            const z = -relativePos * zDepth;
+            const rY = -25 * relativePos;
+            const rZ = 5 * relativePos;
+            card.style.transform = `translateX(${x}px) translateZ(${z}px) rotateY(${rY}deg) rotateZ(${rZ}deg)`;
+            card.style.zIndex = 50 - relativePos;
           } else {
-            // 나머지 카드: 숨김 처리 (CSS에서 처리되지만 안전장치)
-            card.style.opacity = 0;
-            card.style.zIndex = 0;
+            // 왼쪽 대기 카드들
+            const dist = Math.abs(relativePos) - 1;
+            const startX = -centerOffset - (isTablet ? 40 : 60);
+            const x = startX - dist * spreadStep;
+            const z = -dist * zDepth;
+            const rY = 25 * (dist + 1);
+            const rZ = -5 * (dist + 1);
+            card.style.transform = `translateX(${x}px) translateZ(${z}px) rotateY(${rY}deg) rotateZ(${rZ}deg)`;
+            card.style.zIndex = 50 - dist;
           }
-          return; // 모바일이면 3D 로직 실행하지 않고 종료
-        }
-        // --- PC (3D) 로직 ---
-
-        // [CASE A] 오른쪽 메인 (현재 주인공 - 이미지 보임)
-        if (relativePos === 0) {
-          card.style.transform = `translateX(${centerOffset}px) translateZ(200px) rotateY(-10deg) rotateZ(3deg)`;
-          card.style.zIndex = 100;
-        }
-
-        // [CASE B] 왼쪽 메인 (설명창 - 뒤집혀서 뒷면 보임)
-        else if (relativePos === -1) {
-          // HTML에 써놓은 뒷면이 보이도록 200도 회전
-          card.style.transform = `translateX(-${centerOffset}px) translateZ(100px) rotateY(200deg) rotateZ(10deg)`;
-          card.style.zIndex = 90;
-        }
-
-        // [CASE C] 오른쪽 배경
-        else if (relativePos > 0) {
-          const startX = centerOffset + 60;
-          const x = startX + relativePos * spreadStep;
-          const z = -relativePos * 300;
-          const rY = -25 * relativePos;
-          const rZ = 5 * relativePos;
-          card.style.transform = `translateX(${x}px) translateZ(${z}px) rotateY(${rY}deg) rotateZ(${rZ}deg)`;
-          card.style.zIndex = 50 - relativePos;
-        }
-
-        // [CASE D] 왼쪽 배경
-        else {
-          const dist = Math.abs(relativePos) - 1;
-          const startX = -centerOffset - 60;
-          const x = startX - dist * spreadStep;
-          const z = -dist * 300;
-          const rY = 25 * (dist + 1);
-          const rZ = -5 * (dist + 1);
-          card.style.transform = `translateX(${x}px) translateZ(${z}px) rotateY(${rY}deg) rotateZ(${rZ}deg)`;
-          card.style.zIndex = 50 - dist;
-        }
-
-        // 너무 먼 카드 숨김
-        if (Math.abs(relativePos) > 3) card.style.opacity = 0;
-      });
+          if (Math.abs(relativePos) > 3) card.style.opacity = 0;
+        });
+      }
     }
 
-    // 버튼 이벤트
+    // [나머지 이벤트 리스너들은 기존과 동일]
+    $(".array img").on("click touchstart mouseenter", function (e) {
+      const isMobile = window.innerWidth <= 768;
+      const largeImageSrc = $(this).attr("data-large");
+      const currentCard = $(this).closest(".card");
+
+      if (isMobile) {
+        const cardImg = currentCard.find(".card-front img");
+        if (largeImageSrc && cardImg.length) {
+          cardImg.attr("src", largeImageSrc);
+          currentCard.addClass("user-changed");
+        }
+      } else {
+        if (e.type === "mouseenter") {
+          const currentCardIndex = Array.from(cards).indexOf(currentCard[0]);
+          const nextIndex = (currentCardIndex + 1) % totalCards;
+          const nextCard = $(cards[nextIndex]);
+          const nextCardImg = nextCard.find(".card-front img");
+          if (largeImageSrc && nextCardImg.length) {
+            nextCardImg.attr("src", largeImageSrc);
+          }
+        }
+      }
+    });
+
     nextBtn.addEventListener("click", () => {
       currentIndex = (currentIndex + 1) % totalCards;
       updateCarousel();
@@ -265,59 +344,32 @@ $(window).on("load", function () {
       updateCarousel();
     });
 
-    updateCarousel();
-    window.addEventListener("resize", updateCarousel);
-    $(".array img").on("mouseenter", function () {
-      const largeImageSrc = $(this).attr("data-large");
-
-      // 현재 카드의 인덱스 찾기
-      const currentCard = $(this).closest(".card");
-      const currentIndex = Array.from(cards).indexOf(currentCard[0]);
-
-      // 다음 카드 찾기 (원형 구조이므로 totalCards로 나눈 나머지)
-      const nextIndex = (currentIndex + 1) % totalCards;
-      const nextCard = $(cards[nextIndex]);
-
-      // 다음 카드의 앞면 이미지 변경
-      const nextCardImg = nextCard.find(".card-front img");
-
-      if (largeImageSrc && nextCardImg.length) {
-        nextCardImg.attr("src", largeImageSrc);
-      }
-    });
-
     const intervalTime = 3000;
     let autoSlideInterval;
-
     function startAutoSlide() {
       if (autoSlideInterval) clearInterval(autoSlideInterval);
-
       autoSlideInterval = setInterval(() => {
         nextBtn.click();
       }, intervalTime);
     }
-
     function stopAutoSlide() {
-      if (autoSlideInterval) {
-        clearInterval(autoSlideInterval);
-        autoSlideInterval = null;
-      }
+      clearInterval(autoSlideInterval);
+      autoSlideInterval = null;
     }
 
-    // 버튼 클릭 시 자동 슬라이드 리셋
     nextBtn.addEventListener("click", startAutoSlide);
     prevBtn.addEventListener("click", startAutoSlide);
-
-    // ⭐ 카드에 마우스 호버 시 자동 슬라이드 정지 ⭐
     cards.forEach((card) => {
       card.addEventListener("mouseenter", stopAutoSlide);
       card.addEventListener("mouseleave", startAutoSlide);
     });
 
-    // 페이지 로드 시 자동 슬라이드 시작
+    updateCarousel();
+    window.addEventListener("resize", () => {
+      setTimeout(updateCarousel, 100);
+    });
     startAutoSlide();
   }
-
   // 🔥 4. 텍스트 페이드 인/아웃 애니메이션
   gsap.fromTo(
     ".text-inner",
@@ -327,14 +379,14 @@ $(window).on("load", function () {
       duration: 4,
       scrollTrigger: {
         trigger: "#page3",
-        start: "top 20%",
+        start: "top 50%",
         end: "top 50%",
         scrub: 2,
       },
     }
   );
-  //고양이에서확대
-  //고양이에서확대
+
+  // 고양이에서 확대 및 포트폴리오 섹션 관련 코드
   const portfolioReveal = document.querySelector(".portfolio-reveal-section");
   const portfolioSection = document.querySelector(
     "#portfolio.portfolio-with-transition"
@@ -342,91 +394,113 @@ $(window).on("load", function () {
   const creativeSection = document.querySelector("#creative");
   const anchorIcon = document.querySelector(".portfolio-anchor-icon");
 
+  // GSAP MatchMedia 생성
+  let mm = gsap.matchMedia();
+
   if (portfolioReveal && portfolioSection) {
-    // ⭐ creative 섹션 초기 숨김
-    if (creativeSection) {
-      gsap.set(creativeSection, {
-        opacity: 0,
-        visibility: "hidden",
-      });
-    }
-
-    ScrollTrigger.create({
-      trigger: portfolioReveal,
-      start: "top top",
-      end: "+=150%",
-      pin: true,
-      pinSpacing: false,
-      scrub: 1,
-
-      onUpdate: (self) => {
-        const progress = self.progress;
-
-        // 🔴 1. 원 확대 애니메이션
-        gsap.to(portfolioSection, {
-          opacity: progress > 0 ? 1 : 0,
-          clipPath: `circle(${progress * 150}% at 18% 70%)`,
-          pointerEvents: progress > 0.8 ? "auto" : "none",
-          duration: 0.1,
-          overwrite: true,
+    // ✅ 1. PC 버전 (화면 너비가 768px 이상일 때만 애니메이션 적용)
+    mm.add("(min-width: 768px)", () => {
+      // PC 초기 설정: creative 섹션 숨기기
+      if (creativeSection) {
+        gsap.set(creativeSection, {
+          opacity: 0,
+          visibility: "hidden",
         });
+      }
 
-        // 🔴 2. 고양이 아이콘 사라짐
-        if (anchorIcon) {
-          gsap.to(anchorIcon, {
-            scale: 1 - progress * 0.2,
-            opacity: 1 - progress * 1.5,
+      // PC용 ScrollTrigger 애니메이션
+      ScrollTrigger.create({
+        trigger: portfolioReveal,
+        start: "top top",
+        end: "+=150%",
+        pin: true,
+        pinSpacing: false, // 모바일에서 자연스럽게 넘어가려면 false가 나을 수 있음 (상황에 따라 true)
+        scrub: 1,
+
+        onUpdate: (self) => {
+          const progress = self.progress;
+
+          // 원 확대 애니메이션
+          gsap.to(portfolioSection, {
+            opacity: progress > 0 ? 1 : 0,
+            clipPath: `circle(${progress * 150}% at 18% 70%)`,
+            pointerEvents: progress > 0.8 ? "auto" : "none",
             duration: 0.1,
             overwrite: true,
           });
-        }
-      },
 
-      // ⭐ 애니메이션 완료 후
-      onLeave: () => {
-        // 고양이 섹션 숨기기
-        gsap.set(portfolioReveal, {
-          display: "none",
-        });
+          // 고양이 아이콘 사라짐
+          if (anchorIcon) {
+            gsap.to(anchorIcon, {
+              scale: 1 - progress * 0.2,
+              opacity: 1 - progress * 1.5,
+              duration: 0.1,
+              overwrite: true,
+            });
+          }
+        },
 
-        // #portfolio를 relative로 전환
-        gsap.set(portfolioSection, {
-          position: "relative",
-          top: "auto",
-          opacity: 1,
-          clipPath: "circle(150% at 50% 50%)",
-          pointerEvents: "auto",
-        });
-
-        // ⭐ creative 섹션 보이기
-        if (creativeSection) {
-          gsap.set(creativeSection, { visibility: "visible" });
-          gsap.to(creativeSection, { opacity: 1, duration: 0.5 });
-        }
-      },
-
-      onEnterBack: () => {
-        // 고양이 섹션 다시 보이기
-        gsap.set(portfolioReveal, {
-          display: "flex",
-        });
-
-        // #portfolio를 다시 fixed로
-        gsap.set(portfolioSection, {
-          position: "fixed",
-          top: "0",
-          opacity: 1,
-          pointerEvents: "none",
-        });
-
-        // ⭐ creative 섹션 숨기기
-        if (creativeSection) {
-          gsap.set(creativeSection, {
-            opacity: 0,
-            visibility: "hidden",
+        onLeave: () => {
+          // 애니메이션 끝난 후 PC 스타일 고정
+          gsap.set(portfolioReveal, { display: "none" });
+          gsap.set(portfolioSection, {
+            position: "relative",
+            top: "auto",
+            opacity: 1,
+            clipPath: "circle(150% at 50% 50%)", // 완전히 열린 상태
+            pointerEvents: "auto",
           });
-        }
-      },
+          if (creativeSection) {
+            gsap.set(creativeSection, { visibility: "visible" });
+            gsap.to(creativeSection, { opacity: 1, duration: 0.5 });
+          }
+        },
+
+        onEnterBack: () => {
+          // 뒤로 스크롤 시 PC 스타일 복귀
+          gsap.set(portfolioReveal, { display: "flex" });
+          gsap.set(portfolioSection, {
+            position: "fixed",
+            top: "0",
+            opacity: 1,
+            pointerEvents: "none",
+          });
+          if (creativeSection) {
+            gsap.set(creativeSection, { opacity: 0, visibility: "hidden" });
+          }
+        },
+      });
+    });
+
+    // ✅ 2. 모바일 버전 (화면 너비가 768px 미만일 때)
+    mm.add("(max-width: 767px)", () => {
+      // 모바일에서는 애니메이션 없이 그냥 보이도록 강제 설정
+
+      // 고양이 섹션(Reveal)은 모바일 디자인에 따라 숨기거나 그냥 둠 (여기선 숨김 예시)
+      // 만약 고양이 아이콘도 그냥 스크롤로 지나가게 하려면 display: block으로 두세요.
+      gsap.set(portfolioReveal, {
+        display: "block", // 혹은 디자인에 따라 "none" 처리
+        position: "relative",
+      });
+
+      // 포트폴리오 섹션: 고정(fixed) 풀고, 마스크(clipPath) 제거하고, 그냥 보이게 함
+      gsap.set(portfolioSection, {
+        position: "relative",
+        top: "auto",
+        opacity: 1,
+        clipPath: "none", // 원형 마스크 제거 (전체 다 보임)
+        pointerEvents: "auto",
+        visibility: "visible",
+      });
+
+      // Creative 섹션도 바로 보이게
+      if (creativeSection) {
+        gsap.set(creativeSection, {
+          opacity: 1,
+          visibility: "visible",
+          position: "relative",
+        });
+      }
     });
   }
 
